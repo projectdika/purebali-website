@@ -8,4 +8,12 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-poppins: 'Poppins', sans-serif;
+    --color-primary: #5E3023;
+    --color-secondary: #F3E9DC;
+    --color-input: #F3F3F5;
+    --color-white: #FFFFFF;
+    --color-button: #C37F43;
+    --color-card: #E0AB7C;
+    --color-black: #000000;
 }
