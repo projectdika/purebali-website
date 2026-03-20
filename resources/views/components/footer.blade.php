@@ -1,14 +1,23 @@
 <footer class="bg-primary font-poppins text-sm text-white px-10 pt-10 pb-5 w-full items-center flex justify-center flex-col">
-    <div class="flex gap-30 pb-5 w-full justify-center">
+    <div class="flex flex-col md:flex-row gap-10 md:gap-30 pb-5 w-full justify-center">
         <section>
             <img class="w-50 h-auto" src="{{asset('assets/images/logoTextColor.png')}}" alt="Logo PureBali">
             <p>Platform Edukasi Budaya Bali Interaktif</p>
         </section>
         <nav class="flex flex-col">
             <h3 class="font-semibold text-xl mb-3">Quick Links</h3>
-            <a href="" class="mb-3">Home</a>
-            <a href="" class="mb-3">Balinese Cultures</a>
-            <a href="" class="mb-3">About Us</a>
+            <a href="" class="mb-3 group relative">
+                <p>Home</p>
+                <span class="absolute left-0 -bottom-1 w-11 h-0.5 bg-white origin-left transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+            </a>
+            <a href="" class="mb-3 relative inline-block group">
+                <p>Balinese Cultures</p>
+                <span class="absolute left-0 -bottom-1 w-full h-0.5 bg-white origin-left transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+            </a>
+            <a href="" class="mb-3 relative inline-block group">
+                <p>About Us</p>
+                <span class="absolute left-0 -bottom-1 w-15 h-0.5 bg-white origin-left transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+            </a>
         </nav>
         <section>
             <h3>Follow Us</h3>
