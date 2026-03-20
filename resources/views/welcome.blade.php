@@ -23,8 +23,33 @@
         @endif
     </head>
     <body>
-        <div class="flex bg-secondary items-center justify-center w-full h-screen">
-            <p class="text-primary font-poppins text-2xl">Selamat Bekerja Boi</p>
+        @php
+            $dummyData = [
+                    'title' => 'Tari Baris Gede',
+                    'category' => 'Tari Bali',
+                    'link' => '#',
+                    'image' => 'assets/images/dummyCardImage.jpg'
+            ]
+        @endphp
+        <div class="flex gap-10 bg-secondary items-center justify-center w-full h-screen">
+            <x-card
+            title="{{ $dummyData['title'] }}"
+            category="{{ $dummyData['category'] }}"
+            link="{{ $dummyData['link'] }}"
+            image="{{$dummyData['image']}}"
+            ></x-card>
+             <x-card
+            title="{{ $dummyData['title'] }}"
+            category="{{ $dummyData['category'] }}"
+            link="{{ $dummyData['link'] }}"
+            image="{{$dummyData['image']}}"
+            ></x-card>
+             <x-card
+            title="{{ $dummyData['title'] }}"
+            category="{{ $dummyData['category'] }}"
+            link="{{ $dummyData['link'] }}"
+            image="{{$dummyData['image']}}"
+            ></x-card>
         </div>
     </body>
     <x-footer></x-footer>
