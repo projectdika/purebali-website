@@ -27,4 +27,5 @@
             <p class="text-primary font-poppins text-2xl">Selamat Bekerja Boi</p>
         </div>
     </body>
+    <x-footer></x-footer>
 </html>
