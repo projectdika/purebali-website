@@ -13,16 +13,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-        <div class="flex items-center gap-4 p-10 bg-[#FDF5ED]">
-            <x-button variant="outline" href="/login">
-                Login
-            </x-button>
-
-            <x-button type="button" variant="primary" href="/register">
-                Register
-            </x-button>
-        </div>
-
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -33,6 +23,10 @@
         @endif
     </head>
     <body>
+        <header>
+            <x-navbar>
+            </x-navbar>
+        </header>
         @php
             $dummyData = [
                     'title' => 'Tari Baris Gede',
