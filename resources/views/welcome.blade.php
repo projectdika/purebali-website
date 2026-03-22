@@ -18,7 +18,7 @@
                 Login
             </x-button>
 
-            <x-button variant="primary" href="/register">
+            <x-button type="button" variant="primary" href="/register">
                 Register
             </x-button>
         </div>

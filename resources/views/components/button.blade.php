@@ -1,22 +1,23 @@
 @props([
     'variant' => 'primary',
-    'href' => '#'
+    'href' => '#',
+    'type' => 'a'
 ])
 
 @php
     $baseClasses = 'px-8 py-2 rounded-2xl font-medium transition-all duration-300 text-lg inline-block text-center border-2';
 
     $variants = [
-        'primary' => 'bg-[#C5834A] text-white border-[#C5834A] 
-                      hover:bg-transparent hover:text-[#C5834A]',
+        'primary' => 'bg-button text-white border-button 
+                      hover:bg-transparent hover:text-button',
         
-        'outline' => 'bg-transparent text-[#C5834A] border-[#C5834A] 
-                      hover:bg-[#C5834A] hover:text-white'
+        'outline' => 'bg-transparent text-button border-button 
+                      hover:bg-button hover:text-white'
     ];
 
     $classes = $baseClasses . ' ' . ($variants[$variant] ?? $variants['primary']);
 @endphp
 
-<a href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
+<{{$type}} href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
     {{ $slot }}
-</a>
+</{{$type}}>
