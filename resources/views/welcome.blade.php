@@ -23,10 +23,7 @@
         @endif
     </head>
     <body>
-        <header>
-            <x-navbar>
-            </x-navbar>
-        </header>
+        <x-navbar></x-navbar>
         @php
             $dummyData = [
                     'title' => 'Tari Baris Gede',
@@ -37,18 +34,6 @@
         @endphp
         <div class="flex gap-10 bg-secondary items-center justify-center w-full h-screen">
             <x-card
-            title="{{ $dummyData['title'] }}"
-            category="{{ $dummyData['category'] }}"
-            link="{{ $dummyData['link'] }}"
-            image="{{$dummyData['image']}}"
-            ></x-card>
-             <x-card
-            title="{{ $dummyData['title'] }}"
-            category="{{ $dummyData['category'] }}"
-            link="{{ $dummyData['link'] }}"
-            image="{{$dummyData['image']}}"
-            ></x-card>
-             <x-card
             title="{{ $dummyData['title'] }}"
             category="{{ $dummyData['category'] }}"
             link="{{ $dummyData['link'] }}"
