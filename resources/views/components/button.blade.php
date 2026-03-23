@@ -5,7 +5,7 @@
 ])
 
 @php
-    $baseClasses = 'px-8 py-2 rounded-2xl font-medium transition-all duration-300 text-lg inline-block text-center border-2';
+    $baseClasses = 'px-5 py-3 items-center rounded-2xl font-normal font-poppins transition-all duration-200 text-lg flex text-center border-2';
 
     $variants = [
         'primary' => 'bg-button text-white border-button 
