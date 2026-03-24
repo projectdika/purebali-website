@@ -3,7 +3,7 @@
 
 ])
 
-<header x-data="{open: false}">
+<header x-data="{open: false}" class="mb-18">
     <nav class="font-poppins fixed top-0 z-40 w-full flex px-10 py-4 justify-between items-center bg-secondary">
         <a href="">
             <img class="h-12 " src="{{asset('assets/images/logoTextColor.png')}}" alt="PureBali Logo">
