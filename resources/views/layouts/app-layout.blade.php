@@ -37,10 +37,10 @@
         @endphp
 
         {{-- MAIN CONTENT --}}
-        <main>
+        <main class="h-screen w-full bg-secondary">
             {{ $slot }}
         </main>
-        
+
         {{-- FOOTER --}}
         <x-footer></x-footer>
     </body>
