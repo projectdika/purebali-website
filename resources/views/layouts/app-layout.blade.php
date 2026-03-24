@@ -32,7 +32,9 @@
                     'title' => 'Tari Baris Gede',
                     'category' => 'Tari Bali',
                     'link' => '#',
-                    'image' => 'assets/images/dummyCardImage.jpg'
+                    'image' => 'assets/images/dummyCardImage.jpg',
+                    'jumlah_soal' => '10',
+                    'status' => 'aktif'
             ]
         @endphp
 

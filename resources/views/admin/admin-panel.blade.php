@@ -1,5 +1,169 @@
+@php
+    $dummyDatas = [
+        [
+                'title' => 'Tari Baris Gede',
+                'category' => 'Tari Bali',
+                'link' => '#',
+                'image' => 'assets/images/dummyCardImage.jpg',
+                'jumlah_soal' => '10',
+                'status' => 'aktif'
+        ],
+        [
+                'title' => 'Tari Baris Gede',
+                'category' => 'Tari Bali',
+                'link' => '#',
+                'image' => 'assets/images/dummyCardImage.jpg',
+                'jumlah_soal' => '10',
+                'status' => 'aktif'
+        ],
+        [
+                'title' => 'Tari Baris Gede',
+                'category' => 'Tari Bali',
+                'link' => '#',
+                'image' => 'assets/images/dummyCardImage.jpg',
+                'jumlah_soal' => '10',
+                'status' => 'aktif'
+        ],
+        [
+                'title' => 'Tari Baris Gede',
+                'category' => 'Tari Bali',
+                'link' => '#',
+                'image' => 'assets/images/dummyCardImage.jpg',
+                'jumlah_soal' => '10',
+                'status' => 'aktif'
+        ]
+    ];
+@endphp
+
 <x-app-layout>
-    <div class="flex justify-between items-center">
-        
+    <div class="px-35 flex justify-between items-center">
+        <div>
+            <h1 class="text-black text-3xl mb-2 font-bold">Daftar Materi</h1>
+            <p class="text-gray-600">Kelola Daftar Materi</p>
+        </div>
+        <x-button
+        class="gap-1 fill-white hover:fill-button"
+        size="md"
+        >
+            <svg class="size-4 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
+            <p>Tambah Materi</p>
+        </x-button>
+    </div>
+
+    <form action="" method="GET" class="mx-35 py-2 justify-center bg-white px-4 shadow-md rounded-xl items-center mt-5 flex gap-4">
+        @csrf
+        <x-input
+        name="search" 
+        value="" 
+        placeholder="Cari Materi..."/>
+        <x-button
+        size="md"
+        tag="button"
+        type="submit"
+        class="cursor-pointer fill-white hover:fill-button gap-1"
+        >
+        <p>Cari</p>
+        <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M480 272C480 317.9 465.1 360.3 440 394.7L566.6 521.4C579.1 533.9 579.1 554.2 566.6 566.7C554.1 579.2 533.8 579.2 521.3 566.7L394.7 440C360.3 465.1 317.9 480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272zM272 416C351.5 416 416 351.5 416 272C416 192.5 351.5 128 272 128C192.5 128 128 192.5 128 272C128 351.5 192.5 416 272 416z"/></svg>
+        </x-button>
+    </form>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden mx-35 mt-5">
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="border-b font-poppins border-stone-100">
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider w-[40%]">
+                        Daftar Materi
+                    </th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
+                        Jumlah Soal
+                    </th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
+                        Kategori
+                    </th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
+                        Status
+                    </th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
+                        Aktivitas
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-stone-100">
+                @foreach ($dummyDatas as $dummyData)
+                    <tr class="hover:bg-stone-50/70 transition-colors duration-150 group">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <img
+                                    src="{{ asset('assets/images/dummyCardImage.jpg') }}"
+                                    alt="{{ $dummyData['title'] }}"
+                                    class="w-12 h-12 rounded-xl object-cover shrink-0 border border-stone-200"
+                                />
+                                <span class="font-medium text-gray-800 group-hover:text-amber-800 transition-colors duration-150">
+                                    {{ $dummyData['title'] }}
+                                </span>
+                            </div>
+                        </td>
+                        
+                        <td class="px-6 py-4">
+                            <span class="font-medium text-gray-700">
+                                {{ $dummyData['jumlah_soal'] }}
+                            </span>
+                        </td>
+ 
+                        <td class="px-6 py-4 text-gray-600">
+                            {{ $dummyData['category'] }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            @if ($dummyData['status'] === 'aktif')
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full
+                                             text-xs font-medium bg-green-100 text-green-700">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                    Aktif
+                                </span>
+                            @else
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full
+                                             text-xs font-medium bg-red-100 text-red-600">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                                    Nonaktif
+                                </span>
+                            @endif
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-1">
+
+                                <a
+                                    href="#"
+                                    aria-label="Edit {{ $dummyData['title'] }}"
+                                    class="p-2 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50
+                                           transition-all duration-150"
+                                >
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5
+                                               m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
+                                </a>
+ 
+                                <button
+                                    type="button"
+                                    aria-label="Hapus {{ $dummyData['title'] }}"
+                                    class="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50
+                                    transition-all duration-150"
+                                >
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7
+                                    m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </x-app-layout>

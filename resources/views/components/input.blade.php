@@ -1,10 +1,10 @@
 @props(['disabled' => false, 'type' => 'text', 'name', 'label' => null])
 
-<div class="mb-[24.99px]">
+<div class="w-full">
     @if ($label) 
     {{-- Ini untuk label diatas kotak, contoh : Alamat Email --}}
         <label for="{{ $name }}" class="block text-4 font median text-black mb-[3.08px]">
-            {{ label }}
+            {{ $label }}
         </label>
     @endif
 
@@ -15,7 +15,7 @@
         id = "{{ $name }}"
         value = "{{ old($name) }}"
         @disabled($disabled)
-        {{$attributes->merge (['class' => 'w-[558.57px] px-[20.77px] py-[12.46px] bg-[#F3F3F5] rounded-md focus:outline-none'])}}
+        {{$attributes->merge (['class' => 'w-full px-[20.77px] py-[12.46px] bg-[#F3F3F5] rounded-xl focus:outline-none'])}}
     >
 
     @error( $name )

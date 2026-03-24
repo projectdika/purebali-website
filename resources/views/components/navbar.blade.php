@@ -3,8 +3,11 @@
 
 ])
 
-<header x-data="{open: false}" class="mb-18">
-    <nav class="font-poppins fixed top-0 z-40 w-full flex px-10 py-4 justify-between items-center bg-secondary">
+<header x-data="{open: false, scrolled: false}" x-effect="document.body.classList.toggle('overflow-hidden', open)"
+  @scroll.window="scrolled = window.scrollY > 10"
+  :class="scrolled ? 'shadow-md bg-white' : 'shadow-none bg-transparent'"
+  class="sticky top-0 z-30 transition-shadow duration-200">
+    <nav class="font-poppins w-full flex px-10 py-4 justify-between items-center bg-secondary">
         <a href="">
             <img class="h-12 " src="{{asset('assets/images/logoTextColor.png')}}" alt="PureBali Logo">
         </a>
