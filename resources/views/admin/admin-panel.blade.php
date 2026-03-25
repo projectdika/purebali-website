@@ -36,21 +36,21 @@
 @endphp
 
 <x-app-layout>
-    <div class="px-35 flex justify-between items-center">
+    <div class="px-5 pt-2 md:px-35 flex justify-between items-center">
         <div>
-            <h1 class="text-black text-3xl mb-2 font-bold">Daftar Materi</h1>
-            <p class="text-gray-600">Kelola Daftar Materi</p>
+            <h1 class="text-black text-xl md:text-3xl mb-2 font-bold">Daftar Materi</h1>
+            <p class="text-xs md:text-md text-gray-600">Kelola Daftar Materi</p>
         </div>
         <x-button
-        class="gap-1 fill-white hover:fill-button"
+        class="gap-1 text-sm fill-white hover:fill-button"
         size="md"
         >
-            <svg class="size-4 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
+            <svg class="size-3 md:size-4 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
             <p>Tambah Materi</p>
         </x-button>
     </div>
 
-    <form action="" method="GET" class="mx-35 py-2 justify-center bg-white px-4 shadow-md rounded-xl items-center mt-5 flex gap-4">
+    <form action="" method="GET" class="mx-5 md:mx-35 py-2 justify-center bg-white px-4 shadow-md rounded-xl items-center mt-5 flex gap-4">
         @csrf
         <x-input
         name="search" 
@@ -67,20 +67,20 @@
         </x-button>
     </form>
 
-    <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden mx-35 mt-5">
+    <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden mx-5 md:mx-35 mt-5">
         <table class="w-full text-sm">
             <thead>
                 <tr class="border-b font-poppins border-stone-100">
                     <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider w-[40%]">
                         Daftar Materi
                     </th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
+                    <th class="px-6 py-4 text-center text-sm font-semibold text-black tracking-wider">
                         Jumlah Soal
                     </th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
+                    <th class="hidden md:table-cell px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
                         Kategori
                     </th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
+                    <th class="hidden lg:table-cell px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
                         Status
                     </th>
                     <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
@@ -105,17 +105,17 @@
                             </div>
                         </td>
                         
-                        <td class="px-6 py-4">
+                        <td class="px-6 text-center py-4">
                             <span class="font-medium text-gray-700">
                                 {{ $dummyData['jumlah_soal'] }}
                             </span>
                         </td>
  
-                        <td class="px-6 py-4 text-gray-600">
+                        <td class="hidden md:table-cell px-6 py-4 text-gray-600">
                             {{ $dummyData['category'] }}
                         </td>
 
-                        <td class="px-6 py-4">
+                        <td class="hidden lg:table-cell px-6 py-4">
                             @if ($dummyData['status'] === 'aktif')
                                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full
                                              text-xs font-medium bg-green-100 text-green-700">
@@ -131,9 +131,8 @@
                             @endif
                         </td>
 
-                        <td class="px-6 py-4">
+                        <td class=" px-6 py-4">
                             <div class="flex items-center gap-1">
-
                                 <a
                                     href="#"
                                     aria-label="Edit {{ $dummyData['title'] }}"
