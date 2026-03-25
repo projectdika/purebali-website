@@ -9,7 +9,7 @@
             <img class="h-12 " src="{{asset('assets/images/logoTextColor.png')}}" alt="PureBali Logo">
         </a>
 
-        <div class="hidden md:flex justify-center gap-4">
+        <div class="hidden md:flex justify-center gap-8">
             <a class="hover:text-button transition-all duration-100" href="">Home</a>
             <a class="hover:text-button transition-all duration-100" href="">Balinese Cultures</a>
             <a class="hover:text-button transition-all duration-100" href="">About Us</a>

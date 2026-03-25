@@ -1,4 +1,9 @@
-@props(['title', 'category', 'link', 'image'])
+@props([
+    'title' => 'Judul Budaya',
+    'category' => 'Kategori',
+    'link' => '#',         // Kalau lupa diisi, otomatis jadi '#'
+    'image' => 'default.jpg' // Kalau lupa diisi, otomatis jadi 'default.jpg'
+])
 
 <a class="shadow-lg hover:shadow-2xl rounded-2xl" href="{{ $link }}">
     <article class="relative group text-sm text-primary font-poppins overflow-hidden w-80 shadow-lg h-120 rounded-2xl bg-card">
