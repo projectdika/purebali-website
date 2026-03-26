@@ -6,6 +6,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/balinese-culture', function(){
-    return view('balinese-culture');
+Route::get('/detail-material', function(){
+    return view('detail-material');
 });
