@@ -19,7 +19,7 @@
 <body class="bg-secondary font-poppins">
     <x-navbar></x-navbar>
 
-    <main class="py-20">
+    <main >
         <section class="relative border-b-8 border-primary  bg-black opacity-80 py-20 md:py-32 overflow-hidden ">
             <div class="absolute inset-0 opacity-20" style="background-image: url('{{ asset('assets/images/about.png') }}'); background-size: cover;"></div>
             
