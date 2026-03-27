@@ -3,7 +3,7 @@
 <div class="w-full">
     @if ($label) 
     {{-- Ini untuk label diatas kotak, contoh : Alamat Email --}}
-        <label for="{{ $name }}" class="block text-4 font median text-black mb-[3.08px]">
+        <label for="{{ $name }}" class="block text-sm font-semibold text-black mb-[3.08px]">
             {{ $label }}
         </label>
     @endif
@@ -15,7 +15,7 @@
         id = "{{ $name }}"
         value = "{{ old($name) }}"
         @disabled($disabled)
-        {{$attributes->merge (['class' => 'w-full px-[20.77px] py-[12.46px] bg-[#F3F3F5] rounded-xl focus:outline-none'])}}
+        {{$attributes->merge (['class' => 'w-full p-3 text-sm bg-input rounded-xl focus:outline-button outline-1 outline-input'])}}
     >
 
     @error( $name )
