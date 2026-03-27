@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="flex justify-end mt-4 mb-8">
-                    <button type="submit"
+                    <a href="/Result"
                             class="inline-flex items-center gap-2 px-5 py-2.5
                                    bg-button text-white border border-button
                                    text-sm font-medium rounded-lg
@@ -109,7 +109,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         Kirim jawaban
-                    </button>
+                    </a>
                 </div>
 
             </form>
