@@ -42,22 +42,13 @@
         <div class="flex-3 bg-secondary rounded-lg border border-button gap-5 mt-0 p-8 md:p-10 font-poppins">Tari Baris Gede merupakan tarian sakral dan monumental yang menjadi bagian inti dalam upacara Dewa Yadnya, berfungsi sebagai prosesi penyambutan atas kedatangan para dewa ke dunia fana. Dibawakan secara berkelompok oleh 9 hingga 60 penari laki-laki, tarian ini menghadirkan visual barisan prajurit pelindung khayangan yang tangguh dengan atribut senjata tradisional seperti lelontek, tamiang, dan keris. Gerakannya yang cenderung lambat namun bertenaga didukung oleh postur bahu yang tinggi dan sorot mata tajam mencerminkan kewaspadaan spiritual serta wibawa yang besar. Kemegahan ini semakin diperkuat oleh dentuman Gamelan Gong Gede yang repetitif dan kostum awir berlapis-lapis, menciptakan atmosfer magis yang menyucikan ruang upacara. Secara filosofis, tarian ini bukan sekadar pertunjukan fisik, melainkan sebuah bentuk persembahan tulus dan benteng perlindungan untuk memastikan kesucian serta keharmonisan seluruh rangkaian ritual yang sedang berlangsung.</div>
 
         <div class="w-full lg:w-90 lg:sticky lg:top-24">
-            <div class="bg-button rounded-lg text-white p-8 md:p-10">
+            <div class="bg-button rounded-lg text-white flex flex-col justify-center items-center p-8 md:p-10">
                 <h3 class="text-2xl font-bold mb-4 font-poppins">Waktu Kuis</h3>
                 <p class="text-md mb-8 font-poppins">Uji pemahaman kamu di kuis ini. Dan dapatkan skor terbaik kamu.</p>
-                    <x-button type="button" variant="outline" class="bg-white justify-center mb-3 text-2xl font-bold font-poppins" >
-                        Mulai Kuis 
-                    </x-button>
+                <a href="/Question" class="text-white bg-button text-lg py-3 rounded-xl font-semibold hover:bg-secondary hover:text-button px-8 duration-100 transition-all font-poppins">Mulai</a>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
 </main>
 </x-app-layout>
