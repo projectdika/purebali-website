@@ -6,6 +6,14 @@ use App\Http\Controllers\HomeController;
 Route::get('/admin-panel', function(){
     return view('admin/admin-panel');
 });
+
+Route::get('/Question', function(){
+     return view('Question');
+});
+
+Route::get('/Result', function(){
+     return view('Result');
+});
 Route::get('/create-material', function(){
     return view('admin/material/create');
 });
