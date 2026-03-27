@@ -1,11 +1,16 @@
 @props([
     'variant' => 'primary',
     'href' => '#',
-    'type' => 'a'
+    'tag' => 'a',
+    'size' => 'baseClasses'
 ])
 
 @php
-    $baseClasses = 'px-5 py-3 items-center rounded-2xl font-normal font-poppins transition-all duration-200 text-lg flex text-center border-2';
+    $sizes = [
+        'baseClasses' =>  'px-5 py-3 items-center rounded-2xl font-normal font-poppins transition-all duration-200 text-lg flex text-center border-2',
+
+        'md' => 'px-4 py-2 items-center rounded-2xl font-poppins transition-all duration-200 text-lg flex text-center border-2'
+];
 
     $variants = [
         'primary' => 'bg-button text-white border-button 
@@ -15,9 +20,9 @@
                       hover:bg-button hover:text-white'
     ];
 
-    $classes = $baseClasses . ' ' . ($variants[$variant] ?? $variants['primary']);
+    $classes = ($sizes[$size] ?? $sizes['baseClasses']) . ' ' . ($variants[$variant] ?? $variants['primary']);
 @endphp
 
-<{{$type}} href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
+<{{$tag}} href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
     {{ $slot }}
-</{{$type}}>
+</{{$tag}}>
