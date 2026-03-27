@@ -40,7 +40,6 @@ class HomeController extends Controller
 
     public function show($id)
     {
-        // return "Ini halaman detail untuk ID: " . $id;
         return view('detail-material');
     }
 

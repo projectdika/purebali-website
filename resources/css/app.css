@@ -16,4 +16,10 @@
     --color-button: #C37F43;
     --color-card: #E0AB7C;
     --color-black: #000000;
+    --color-success:#3D8A4E;
+    --color-success-bg:#DCFCE7;
+    --color-success-border:#00C950;
+    --color-danger:#C0392B;
+    --color-danger-bg:#FFE2E2;
+    --color-danger-border:#FB2C36;
 }

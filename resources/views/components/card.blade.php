@@ -5,7 +5,7 @@
     'image' => 'default.jpg' // Kalau lupa diisi, otomatis jadi 'default.jpg'
 ])
 
-<a class="shadow-lg hover:shadow-2xl rounded-2xl" href="{{ $link }}">
+<a class="group block h-full rounded-2xl" href="{{ $link }}">
     <article class="relative group text-sm text-primary font-poppins overflow-hidden w-80 shadow-lg h-120 rounded-2xl bg-card">
         <figure class="w-full relative overflow-hidden h-85">
             <img class="transition-transform duration-500 ease-in-out group-hover:scale-105 object-cover w-full h-full inset-0" src="{{ asset($image) }}" alt="Culture Image">
