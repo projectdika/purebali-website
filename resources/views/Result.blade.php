@@ -146,7 +146,7 @@
                     Ulangi Kuis
                 </a>
 
-                <a href="#"
+                <a href="{{route('welcome')}}"
                    class="inline-flex items-center gap-2 px-5 py-2.5
                           bg-button text-white border border-button
                           text-sm font-medium rounded-lg
