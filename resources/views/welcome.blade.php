@@ -17,6 +17,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
             <style>
+                :root {
+                    --swiper-navigation-color: #5E3023; 
+                    --swiper-theme-color: #5E3023;
+                }
+
                 .bali-pattern {
                     position: relative;
                     background-image: url('{{ asset("assets/images/home.png") }}'); 
@@ -42,13 +47,41 @@
 
                 .swiper {
                     width: 100%;
-                    height: 100%;
-                    padding: 20px 0;
+                    padding-top: 20px !important;
+                    padding-bottom: 60px !important; /* Ruang extra untuk shadow card */
                 }
 
                 .swiper-button-next, .swiper-button-prev {
-                    top: 50%;
+                    background-color: white;
+                    width: 45px !important;
+                    height: 45px !important;
+                    border-radius: 50%;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    top: 50% !important;
                     transform: translateY(-50%);
+                    z-index: 50;
+                    transition: all 0.3s ease;
+                }
+
+                .swiper-button-next:hover, .swiper-button-prev:hover {
+                    background-color: #f8f8f8;
+                    transform: translateY(-50%) scale(1.05);
+                }
+
+                .swiper-button-next::after, .swiper-button-prev::after {
+                    font-size: 18px !important;
+                    font-weight: bold;
+                }
+
+                /* Responsive Adjustment for Navigation */
+                @media (max-width: 640px) {
+                    .swiper-button-next, .swiper-button-prev {
+                        width: 38px !important;
+                        height: 38px !important;
+                    }
+                    .swiper-button-next::after, .swiper-button-prev::after {
+                        font-size: 14px !important;
+                    }
                 }
             </style>
     </head>
@@ -84,10 +117,12 @@
                         <p class="text-[#B08968]">Telusuri Detail Budaya Terkini</p>
                     </div>
 
-                    <div class="relative px-10"> <div class="swiper mySwiper">
+                    <div class="relative px-2 md:px-12"> {{-- Tambah padding kiri-kanan agar tombol tidak menutupi kartu --}}
+                        
+                        <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 @foreach($cultures as $item)
-                                    <div class="swiper-slide flex justify-center">
+                                    <div class="swiper-slide flex justify-center items-center"> 
                                         <x-card 
                                             :title="$item->title"
                                             :category="$item->category"
@@ -99,12 +134,9 @@
                             </div>
                         </div>
 
-                        <div class="swiper-button-next !text-[#715437]"></div>
-                        <div class="swiper-button-prev !text-[#715437] !left-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                            </svg>
-                        </div>
+                        <div class="swiper-button-prev !left-0 md:!-left-2 "></div>
+                        <div class="swiper-button-next !right-0 md:!-right-2"></div>
+                    </div>
 
                         <div class="mt-20 max-w-4xl mx-auto text-center font-semibold">
                             <p class="text-[#B08968] leading-relaxed">
@@ -126,21 +158,28 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var swiper = new Swiper(".mySwiper", {
-                slidesPerView: 1,      
-                spaceBetween: 30,     
-                loop: true,         
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                },
-                breakpoints: {
-                    640: {
-                    slidesPerView: 2,
+                    slidesPerView: 1,    
+                    centeredSlides: true,  
+                    spaceBetween: 30,     
+                    loop: true,
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
                     },
-                    1024: {
-                    slidesPerView: 3, 
+                    breakpoints: {
+                        // Tablet
+                        640: {
+                            slidesPerView: 2,
+                            centeredSlides: false,
+                            spaceBetween: 30,
+                        },
+                        // Desktop
+                        1024: {
+                            slidesPerView: 3,
+                            centeredSlides: false,
+                            spaceBetween: 40,
+                        },
                     },
-                },
                 });
             });
         </script>
