@@ -59,7 +59,7 @@
                     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
                     top: 50% !important;
                     transform: translateY(-50%);
-                    z-index: 50;
+                    z-index: 10;
                     transition: all 0.3s ease;
                 }
 
@@ -117,7 +117,7 @@
                         <p class="text-[#B08968]">Telusuri Detail Budaya Terkini</p>
                     </div>
 
-                    <div class="relative px-2 md:px-12"> {{-- Tambah padding kiri-kanan agar tombol tidak menutupi kartu --}}
+                    <div class="relative px-2 md:px-12">
                         
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
@@ -150,9 +150,6 @@
         </main>
 
         <x-footer></x-footer>
-
-
-        {{-- My JS --}}
 
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script>
