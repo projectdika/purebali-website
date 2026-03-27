@@ -42,4 +42,8 @@ class HomeController extends Controller
     {
         return "Ini halaman detail untuk ID: " . $id;
     }
+
+    public function about(){
+        return view('about');
+    }
 }
