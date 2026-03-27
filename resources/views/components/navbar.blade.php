@@ -12,10 +12,10 @@
             <img class="h-12 " src="{{asset('assets/images/logoTextColor.png')}}" alt="PureBali Logo">
         </a>
 
-        <div class="hidden md:flex justify-center gap-4">
-            <a class="hover:text-button transition-all duration-100" href="">Home</a>
-            <a class="hover:text-button transition-all duration-100" href="">Balinese Cultures</a>
-            <a class="hover:text-button transition-all duration-100" href="">About Us</a>
+        <div class="hidden md:flex justify-center gap-8">
+            <a class="hover:text-button transition-all duration-100" href="{{ route('welcome') }}">Home</a>
+            <a class="hover:text-button transition-all duration-100" href="balinese-cultures">Balinese Cultures</a>
+            <a class="hover:text-button transition-all duration-100" href="{{ route('about') }}">About Us</a>
             <a class="hidden hover:text-button transition-all duration-100" href="">Admin Dashboard</a>
         </div>
 
