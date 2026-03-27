@@ -9,7 +9,7 @@
     $sizes = [
         'baseClasses' =>  'px-5 py-3 items-center rounded-2xl font-normal font-poppins transition-all duration-200 text-lg flex text-center border-2',
 
-        'md' => 'px-4 py-2 items-center rounded-2xl font-poppins transition-all duration-200 text-lg flex text-center border-2'
+        'md' => 'px-4 py-2 items-center rounded-2xl font-poppins transition-all duration-200 text-md flex text-center border'
 ];
 
     $variants = [
