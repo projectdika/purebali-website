@@ -23,7 +23,7 @@
                 />
             </div>
            <div class="flex flex-col gap-1.5">
-                <label for="description" class="text-sm text-gray-800">
+                <label for="description" class="font-bold text-sm text-gray-800">
                     Isi Artikel
                 </label>
                 <p class="text-xs text-gray-400">Ceritakan Kebudayaan</p>
@@ -38,21 +38,26 @@
             </div>
             <div class="mt-5 flex justify-between">
                 <div class="flex flex-col">
-                    <label for="category" class="text-sm mb-3">Pilih Kategori</label>
-                    <select class="bg-input p-2 rounded-xl" id="category" name="category">
-                        <option value="elektronik">Elektronik</option>
-                        <option value="pakaian">Pakaian</option>
-                        <option value="makanan">Makanan</option>
+                    <label for="category" class="font-bold text-sm mb-3">Kategori Budaya</label>
+                    <select class="bg-input p-2 outline-button rounded-xl" id="category" name="category">
+                        <option value="Tari Bali">Tari Bali</option>
+                        <option value="Benda Kesenian">Benda kesenian</option>
+                        <option value="Aksara Bali">Aksara Bali</option>
+                        <option value="Adat Istiadat">Adat Istiadat</option>
                     </select>
                 </div>
                 <div class="flex flex-col">
-                    <label for="status">Status Materi</label>
-                    <select name="status">
+                    <label for="status" class="font-bold text-sm mb-3">Status</label>
+                    <select class="bg-input p-2 outline-button rounded-xl" id="status" name="status">
+                        <option value="0">Nonaktif</option>
                         <option value="1">Aktif</option>
-                        <option value="0">Tidak Aktif</option>
                     </select>
                 </div>
             </div>
         </fieldset>
+        <fieldset>
+            
+        </fieldset>
+        
     </form>
 </x-app-layout>

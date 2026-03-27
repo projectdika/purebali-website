@@ -39,7 +39,7 @@
         @endphp
 
         {{-- MAIN CONTENT --}}
-        <main class="h-auto w-full bg-secondary">
+        <main class="h-auto pb-5 w-full bg-secondary">
             {{ $slot }}
         </main>
 
