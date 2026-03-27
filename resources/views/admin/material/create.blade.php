@@ -5,11 +5,11 @@
             <p>Kembali</p>
         </a>
     </div>
-    <p class="text-sm mx-35 mt-2 text-gray-500 font-poppins">Masukan Detail Informasi Mengenai Budaya</p>
-    <form action="GET">
-        <fieldset class="">
-            <legend>Informasi Budaya</legend>
-            <div class="">
+    <p class="text-sm mx-35 mt-2 mb-5 text-gray-500 font-poppins">Masukan Detail Informasi Mengenai Budaya</p>
+    <form action="GET" class="font-poppins">
+        <fieldset class="bg-white rounded-xl shadow-xl mx-35 p-4">
+            <h2 class="text-xl font-bold mb-5">Informasi Budaya</h2>
+            <div class="flex justify-between gap-4 mb-5">
                 <x-input
                 name="title"
                 type="name"
@@ -22,23 +22,36 @@
                 type="file"
                 />
             </div>
-            <x-input
-            name="description"
-            label="Deskripsi Budaya"
-            placeholder="Ceritakan Budaya"
-            />
-            <div>
-                <label for="category">Pilih Kategori:</label>
-                <select id="kategori" name="category">
-                    <option value="elektronik">Elektronik</option>
-                    <option value="pakaian">Pakaian</option>
-                    <option value="makanan">Makanan</option>
-                </select>
-                <label for=""></label>
-                <select name="status">
-                    <option value="1">Aktif</option>
-                    <option value="0">Tidak Aktif</option>
-                </select>
+           <div class="flex flex-col gap-1.5">
+                <label for="description" class="text-sm text-gray-800">
+                    Isi Artikel
+                </label>
+                <p class="text-xs text-gray-400">Ceritakan Kebudayaan</p>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="10"
+                    maxlength="5000"
+                    placeholder="Tulis isi materi disini..."
+                    class="w-full bg-input border border-input rounded-xl px-4 py-3.5 text-sm text-gray-800 placeholder-gray-400 resize-y focus:outline-none focus:border-button transition-colors duration-150"
+                ></textarea>
+            </div>
+            <div class="mt-5 flex justify-between">
+                <div class="flex flex-col">
+                    <label for="category" class="text-sm mb-3">Pilih Kategori</label>
+                    <select class="bg-input p-2 rounded-xl" id="category" name="category">
+                        <option value="elektronik">Elektronik</option>
+                        <option value="pakaian">Pakaian</option>
+                        <option value="makanan">Makanan</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="status">Status Materi</label>
+                    <select name="status">
+                        <option value="1">Aktif</option>
+                        <option value="0">Tidak Aktif</option>
+                    </select>
+                </div>
             </div>
         </fieldset>
     </form>
