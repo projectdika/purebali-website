@@ -37,7 +37,7 @@
 
                 <div class="flex items-start gap-2 mb-4">
                     <div class="w-5 h-5 rounded-full bg-danger-bg border border-danger-border
-                                flex items-center justify-center flex-shrink-0 mt-0.5">
+                                flex items-center justify-center shrink-0 mt-0.5">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-danger" fill="none"
                              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -71,7 +71,7 @@
             <div class="bg-success-bg rounded-xl p-5 mb-3 shadow-sm border border-success-border">
                 <div class="flex items-start gap-2 mb-4">
                     <div class="w-5 h-5 rounded-full bg-success-bg border border-success-border
-                                flex items-center justify-center flex-shrink-0 mt-0.5">
+                                flex items-center justify-center shrink-0 mt-0.5">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-success" fill="none"
                              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
@@ -103,7 +103,7 @@
             <div class="bg-success-bg rounded-xl p-5 mb-6 shadow-sm border border-success-border">
                 <div class="flex items-start gap-2 mb-4">
                     <div class="w-5 h-5 rounded-full bg-success-bg border border-success-border
-                                flex items-center justify-center flex-shrink-0 mt-0.5">
+                                flex items-center justify-center shrink-0 mt-0.5">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-success" fill="none"
                              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>

@@ -134,8 +134,8 @@
                             </div>
                         </div>
 
-                        <div class="swiper-button-prev !left-0 md:!-left-2 "></div>
-                        <div class="swiper-button-next !right-0 md:!-right-2"></div>
+                        <div class="swiper-button-prev left-0! md:-left-2! "></div>
+                        <div class="swiper-button-next right-0! md:-right-2!"></div>
                     </div>
 
                         <div class="mt-20 max-w-4xl mx-auto text-center font-semibold">
