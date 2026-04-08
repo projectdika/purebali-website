@@ -14,7 +14,7 @@ class Attempt extends Model
         'finish_at',
     ];
 
-    public function answer(): HasMany
+    public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
     }

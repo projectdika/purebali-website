@@ -34,11 +34,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function material(): HasMany
+    public function materials(): HasMany
     {
         return $this->hasMany(Material::class);
     }
-    public function attempt(): HasMany
+    public function attempts(): HasMany
     {
         return $this->hasMany(Attempt::class);
     }

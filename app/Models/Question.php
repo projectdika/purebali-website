@@ -16,11 +16,11 @@ class Question extends Model
     {
         return $this->belongsTo(Quiz::class);
     }
-    public function answer(): HasMany
+    public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
     }
-    public function option(): HasMany
+    public function options(): HasMany
     {
         return $this->hasMany(Option::class);
     }

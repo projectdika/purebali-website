@@ -11,7 +11,7 @@ class Category extends Model
         'name',
     ];
     
-    public function material(): HasMany
+    public function materials(): HasMany
     {
         return $this->hasMany(Material::class);
     }
