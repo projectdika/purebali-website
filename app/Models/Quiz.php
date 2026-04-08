@@ -12,15 +12,15 @@ class Quiz extends Model
         'title',
     ];
     
-    public function material(): hasOne
+    public function material(): HasOne
     {
         return $this->hasOne(Material::class);
     }
-    public function question(): hasMany
+    public function question(): HasMany
     {
         return $this->hasMany(Question::class);
     }
-    public function attempt(): hasMany
+    public function attempt(): HasMany
     {
         return $this->hasMany(Attempt::class);
     }
