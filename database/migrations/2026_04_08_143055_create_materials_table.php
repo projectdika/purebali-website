@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('picture');
             $table->text('description');
-            $table->boolean('status')->default('true');
+            $table->boolean('status')->default(true);
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->timestamps();

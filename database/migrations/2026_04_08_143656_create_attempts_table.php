@@ -16,8 +16,6 @@ return new class extends Migration
             $table->foreignId('quiz_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->integer('score');
-            $table->timestamps('started_at');
-            $table->timestamps('finish_at');
             $table->timestamps();
         });
     }
