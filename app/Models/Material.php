@@ -14,6 +14,8 @@ class Material extends Model
         'picture',
         'description',
         'status',
+        'user_id',
+        'category_id',
     ];
 
     public function quiz(): HasOne

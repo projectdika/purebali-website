@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Quiz extends Model
 {
     protected $fillable = [
         'title',
+        'material_id',
     ];
     
-    public function material(): HasOne
+    public function material(): BelongsTo
     {
-        return $this->hasOne(Material::class);
+        return $this->belongsTo(Material::class);
     }
-    public function question(): HasMany
+    public function questions(): HasMany
     {
         return $this->hasMany(Question::class);
     }

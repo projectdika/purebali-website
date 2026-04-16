@@ -27,7 +27,7 @@
 <div class="flex max-w-5xl w-full h-[520px] bg-secondary rounded-xl overflow-hidden shadow-lg">
 
     <!-- LEFT -->
-    <div class="w-1/2 flex justify-center bg-cover bg-center flex items-center"
+    <div class="w-1/2 flex justify-center bg-cover bg-center items-center"
          style="background-image: url('{{asset('assets/images/home.png')}}');">
 
         <div class="text-primary bg-white/50 h-full py-[45%] w-full text-center">
@@ -51,23 +51,23 @@
 
         <p class="text-sm text-black/60 mb-6">
             Don't have an account?
-            <a href="/register" class="text-[#5E3023] font-medium">Register now</a>
+            <a href="/register" class="text-primaryont-medium">Register now</a>
         </p>
 
         <form class="space-y-4" method="POST" action="{{route('login.post')}}">
             @csrf
             <label for="email">Email</label>
             <input value="{{ old('email') }}" type="text" name="email" id="email" placeholder="example@email.com"
-                class="w-full p-3 bg-[#F3F3F5] rounded-md outline-none">
+                class="w-full p-3 bg-input rounded-md outline-none">
             @error('email')
                 <p class="text-red-500">{{ $message }}</p>
             @enderror
 
             <label for="password">Password</label>
             <input  type="password" name="password" id="password" placeholder="*******"
-                class="w-full p-3 bg-[#F3F3F5] rounded-md outline-none">
+                class="w-full p-3 bg-input rounded-md outline-none">
 
-            <button type="submit" class="w-full bg-[#C37F43] text-white py-3 rounded-md">
+            <button type="submit" class="w-full bg-button text-white py-3 rounded-md">
                 Login
             </button>
         </form>

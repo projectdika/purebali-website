@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->text('question_text');
+            $table->integer('correct_answer');
             $table->foreignId('quiz_id')->constrained();
         });
     }
