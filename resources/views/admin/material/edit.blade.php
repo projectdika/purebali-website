@@ -11,7 +11,7 @@
     </div>
 
     <form
-        action="{{route('dashboard.materials.store')}}"
+        action="#"
         method="POST"
         enctype="multipart/form-data"
         class="font-poppins px-4 sm:px-8 lg:px-16 xl:px-32 2xl:px-40 pb-32"
@@ -46,37 +46,17 @@
             <h2 class="text-xl font-bold mb-5 text-gray-800">Informasi Budaya</h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-                <div class="col-span-full">
-                <label for="title" class="font-bold text-sm text-gray-800">
-                    Nama Budaya
-                </label>
-                <input
-                    id="title"
+                <x-input
                     name="title"
                     type="text"
+                    label="Nama Budaya"
                     placeholder="Contoh: Tari Baris Gede"
-                    value="{{ old('title') }}"
-                    class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm
-                           text-gray-800 placeholder-gray-400 resize-y
-                           focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent
-                           transition-colors duration-150"
-                ></input>
-                </div>
-                <div class="col-span-full">
-                <label for="picture" class="font-bold text-sm text-gray-800">
-                    Foto Utama
-                </label>
-                <input
-                    id="picture"
-                    name="picture"
-                    value="{{ old('picture') }}"
+                />
+                <x-input
+                    name="image"
+                    label="Foto Utama"
                     type="file"
-                    class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm
-                           text-gray-800 placeholder-gray-400 resize-y
-                           focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent
-                           transition-colors duration-150"
-                ></input>
-                </div>
+                />
             </div>
 
             <div class="flex flex-col gap-1.5 mb-5">
@@ -88,7 +68,6 @@
                     id="description"
                     name="description"
                     rows="10"
-                    value="{{old('description')}}"
                     maxlength="5000"
                     placeholder="Tulis isi materi disini..."
                     class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm
@@ -100,17 +79,18 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="flex flex-col gap-2">
-                    <label for="category_id" class="font-bold text-sm text-gray-800">Kategori Budaya</label>
+                    <label for="category" class="font-bold text-sm text-gray-800">Kategori Budaya</label>
                     <select
-                        id="category_id"
-                        name="category_id"
+                        id="category"
+                        name="category"
                         class="bg-stone-50 border border-stone-200 px-3 py-2.5 rounded-xl text-sm text-gray-700
                                focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent
                                transition duration-150"
                     >
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
+                        <option value="Tari Bali">Tari Bali</option>
+                        <option value="Benda Kesenian">Benda Kesenian</option>
+                        <option value="Aksara Bali">Aksara Bali</option>
+                        <option value="Adat Istiadat">Adat Istiadat</option>
                     </select>
                 </div>
 
@@ -123,8 +103,8 @@
                                focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent
                                transition duration-150"
                     >
-                        <option value="false">Nonaktif</option>
-                        <option value="true">Aktif</option>
+                        <option value="0">Nonaktif</option>
+                        <option value="1">Aktif</option>
                     </select>
                 </div>
             </div>
