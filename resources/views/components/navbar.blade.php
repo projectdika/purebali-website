@@ -8,12 +8,12 @@
         </a>
 
         <div class="hidden md:flex justify-center gap-8">
-            <a class="hover:text-button transition-all duration-100" href="{{ route('welcome') }}">Home</a>
-            <a class="hover:text-button transition-all duration-100" href="/balinese-cultures">Balinese Cultures</a>
+            <a class="hover:text-button transition-all duration-100" href="{{ route('home') }}">Home</a>
+            <a class="hover:text-button transition-all duration-100" href="{{route('cultures.index')}}">Balinese Cultures</a>
             <a class="hover:text-button transition-all duration-100" href="{{ route('about') }}">About Us</a>
             
             @can('admin-only')
-                <a class="hover:text-button transition-all duration-100" href="/admin-panel">Admin Dashboard</a>
+                <a class="hover:text-button transition-all duration-100" href="{{route('dashboard.materials.index')}}">Admin Dashboard</a>
             @endcan
         </div>
 
@@ -88,10 +88,10 @@
         </div>
 
         <nav class="flex flex-col justify-center items-center">
-            <a href="{{route('welcome')}}" class="mt-10 font-medium text-button text-xl mb-10">Home</a>
-            <a href="/balinese-cultures" class="font-medium text-button text-xl mb-10">Balinese Cultures</a>
+            <a href="{{route('home')}}" class="mt-10 font-medium text-button text-xl mb-10">Home</a>
+            <a href="{{route('cultures.index')}}" class="font-medium text-button text-xl mb-10">Balinese Cultures</a>
             <a href="{{route('about')}}" class="font-medium text-button text-xl mb-10">About Us</a>
-            <a href="/admin-panel" class="hidden font-medium text-button text-xl mb-10">Admin Dashboard</a>
+            <a href="{{route('dashboard.materials.index')}}" class="hidden font-medium text-button text-xl mb-10">Admin Dashboard</a>
             @auth
             <form method="POST" action="/logout" class="font-medium flex text-red-600 text-xl mb-10">
                 @csrf

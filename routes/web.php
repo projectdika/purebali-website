@@ -8,23 +8,17 @@ use App\Http\Controllers\MaterialController;
 Route::get('/Question', function(){
      return view('Question');
 });
-Route::get('/Result', function(){
-     return view('Result');
+Route::get('/result', function(){
+     return view('result');
 });
-Route::get('/create-material', function(){
-    return view('admin/material/create');
-});
-Route::get('/balinese-cultures', function(){
-    return view('balinese-cultures');
-});
-Route::get('/detail-material', function(){
-    return view('detail-material');
-});
-Route::get('/', [HomeController::class, 'index'])->name('welcome');
-Route::get('/budaya/{id}', [HomeController::class, 'show'])->name('budaya.detail');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
 
-//BATAS YANG BENER, YANG BENER DI BAWAH
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/cultures', [HomeController::class, 'cultures'])->name('cultures.index');
+Route::get('/culture/{id}', [HomeController::class, 'show'])->name('culture.show');
+
+Route::get('/about', function() {
+    return view('about');
+})->name('about');
 
 Route::middleware('auth')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
