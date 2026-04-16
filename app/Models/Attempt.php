@@ -10,6 +10,8 @@ class Attempt extends Model
 {
     protected $fillable = [
         'score',
+        'quiz_id',
+        'user_id',
         'started_at',
         'finish_at',
     ];

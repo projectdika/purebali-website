@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\QuizController;
 
 Route::get('/Question', function(){
      return view('Question');
@@ -22,6 +23,9 @@ Route::get('/about', function() {
 
 Route::middleware('auth')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/quiz/{quiz}/start', [QuizController::class, 'start'])->name('quiz.start');
+    Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quiz.submit');
+    Route::get('/quiz/result/{attempt}', [QuizController::class, 'result'])->name('quiz.result');
 });
 
 Route::middleware('guest')->group(function () {

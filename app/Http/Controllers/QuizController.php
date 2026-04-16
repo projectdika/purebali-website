@@ -3,64 +3,115 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quiz;
-use App\Http\Requests\StoreQuizRequest;
-use App\Http\Requests\UpdateQuizRequest;
+use App\Models\Attempt;
+use App\Models\Answer;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan halaman pertanyaan kuis
      */
-    public function index()
+    public function start(Quiz $quiz)
     {
-        //
+        // Pastikan quiz memiliki pertanyaan
+        if ($quiz->questions->count() === 0) {
+            return redirect()->back()->with('error', 'Kuis ini belum memiliki pertanyaan.');
+        }
+
+        // Load quiz beserta pertanyaan dan opsi
+        $quiz->load('questions.options');
+
+        return view('quiz.question', compact('quiz'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Memproses jawaban kuis
      */
-    public function create()
+    public function submit(Request $request, Quiz $quiz)
     {
-        //
+        $validated = $request->validate([
+            'answers' => 'required|array',
+            'answers.*' => 'required|integer|min:0|max:3', // indeks opsi yang dipilih
+        ]);
+
+        DB::beginTransaction();
+        try {
+            // Hitung skor
+            $totalQuestions = $quiz->questions->count();
+            $correctCount = 0;
+
+            // Buat attempt baru
+            $attempt = Attempt::create([
+                'quiz_id' => $quiz->id,
+                'user_id' => Auth::id(),
+                'score' => 0, // sementara
+            ]);
+
+            // Simpan jawaban user dan hitung benar
+            foreach ($quiz->questions as $question) {
+                $selectedOptionIndex = $request->input("answers.{$question->id}");
+                $isCorrect = ($selectedOptionIndex == $question->correct_answer);
+
+                if ($isCorrect) {
+                    $correctCount++;
+                }
+
+                // Dapatkan option_id berdasarkan indeks yang dipilih
+                $option = $question->options->get($selectedOptionIndex);
+
+                if ($option) {
+                    Answer::create([
+                        'attempt_id'  => $attempt->id,
+                        'question_id' => $question->id,
+                        'option_id'   => $option->id,
+                    ]);
+                }
+            }
+
+            // Update skor attempt
+            $score = round(($correctCount / $totalQuestions) * 100);
+            $attempt->update(['score' => $score]);
+
+            DB::commit();
+
+            return redirect()->route('quiz.result', $attempt);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Gagal menyimpan jawaban: ' . $e->getMessage());
+        }
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menampilkan hasil kuis
      */
-    public function store(StoreQuizRequest $request)
+    public function result(Attempt $attempt)
     {
-        //
-    }
+        // Pastikan user hanya bisa melihat hasil miliknya
+        if ($attempt->user_id !== Auth::id()) {
+            abort(403);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Quiz $quiz)
-    {
-        //
-    }
+        $attempt->load([
+            'quiz.questions.options',
+            'answers.option',
+            'answers.question'
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Quiz $quiz)
-    {
-        //
-    }
+        // Siapkan data review jawaban
+        $quiz = $attempt->quiz;
+        $totalQuestions = $quiz->questions->count();
+        $correctCount = $attempt->answers->filter(function ($answer) {
+            $question = $answer->question;
+            $selectedOptionIndex = $question->options->search(function ($option) use ($answer) {
+                return $option->id === $answer->option_id;
+            });
+            return $selectedOptionIndex == $question->correct_answer;
+        })->count();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateQuizRequest $request, Quiz $quiz)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Quiz $quiz)
-    {
-        //
+        return view('quiz.result', compact('attempt', 'quiz', 'totalQuestions', 'correctCount'));
     }
 }
