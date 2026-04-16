@@ -2,15 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/admin-panel', function(){
     return view('admin/admin-panel');
 });
-
 Route::get('/Question', function(){
      return view('Question');
 });
-
 Route::get('/Result', function(){
      return view('Result');
 });
@@ -27,9 +26,16 @@ Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/budaya/{id}', [HomeController::class, 'show'])->name('budaya.detail');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
-Route::get('/login', function(){
-    return view('Auth/login');
+//BATAS YANG BENER, YANG BENER DI BAWAH
+
+Route::middleware('auth')->group(function() {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-Route::get('/register', function(){
-    return view('Auth/register');
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('register.post');
 });
+

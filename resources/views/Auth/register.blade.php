@@ -23,7 +23,7 @@
     </head>
 <body class="bg-secondary font-poppins flex items-center justify-center min-h-screen">
 
-<div class="flex max-w-5xl w-full h-[560px] bg-[#F3E9DC] rounded-xl overflow-hidden shadow-lg">
+<div class="flex max-w-5xl w-full h-max bg-[#F3E9DC] rounded-xl overflow-hidden shadow-lg">
 
     <!-- LEFT -->
     <div class="w-1/2 flex justify-center bg-cover bg-center flex items-center"
@@ -40,7 +40,7 @@
     </div>
 
     <!-- RIGHT -->
-    <div class="w-1/2 p-10 flex flex-col justify-center">
+    <div class="w-1/2 p-10 flex flex-col h-max justify-center">
 
         <p class="text-sm text-black/60 mb-1">Pure Bali</p>
 
@@ -53,22 +53,34 @@
             <a href="/login" class="text-primary font-medium">Login</a>
         </p>
 
-        <form method="POST" action="/register" class="space-y-4">
+        <form method="POST" action="{{route('register.post')}}" class="space-y-4">
             @csrf
-
-            <input type="text" name="name" placeholder="Full Name"
+            <label for="name">Nama</label>
+            <input value="{{ old('name') }}" type="text" name="name" id="name" placeholder="Masukan Nama Lengkap"
+                class="w-full p-3 bg-input rounded-md outline-none">
+            @error('name')
+                <p class="text-red-500">{{ $message }}</p>
+            @enderror
+            <label for="email">Email</label>
+            <input type="email" id="email" value="{{old('email')}}" name="email" placeholder="Masukan Alamat Email"
+                class="w-full p-3 bg-input rounded-md outline-none">
+            @error('email')
+                <p class="text-red-500">{{ $message }}</p>
+            @enderror
+            <label for="phone_number">Nomor HP</label>
+            <input type="text" id="phone_number" value="{{old('phone_number')}}" name="phone_number" placeholder="Masukan Nomor HP"
+                class="w-full p-3 bg-input rounded-md outline-none">
+            @error('phone_number')
+                <p class="text-red-500">{{ $message }}</p>
+            @enderror
+            <label for="password">Password</label>
+            <input  type="password" name="password" id="password" placeholder="Masukan Password"
+                class="w-full p-3 bg-input rounded-md outline-none">
+            <label for="pasword_confirmation">Konfirmasi Pasword</label>
+            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi Password"
                 class="w-full p-3 bg-input rounded-md outline-none">
 
-            <input type="email" name="email" placeholder="Email Address"
-                class="w-full p-3 bg-input rounded-md outline-none">
-
-            <input type="password" name="password" placeholder="Password"
-                class="w-full p-3 bg-input rounded-md outline-none">
-
-            <input type="password" name="password_confirmation" placeholder="Confirm Password"
-                class="w-full p-3 bg-input rounded-md outline-none">
-
-            <button class="w-full bg-button text-white py-3 rounded-md">
+            <button type="submit" class="w-full bg-button text-white py-3 rounded-md">
                 Register
             </button>
         </form>

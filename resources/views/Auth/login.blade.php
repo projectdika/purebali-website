@@ -54,15 +54,20 @@
             <a href="/register" class="text-[#5E3023] font-medium">Register now</a>
         </p>
 
-        <form class="space-y-4">
+        <form class="space-y-4" method="POST" action="{{route('login.post')}}">
+            @csrf
+            <label for="email">Email</label>
+            <input value="{{ old('email') }}" type="text" name="email" id="email" placeholder="example@email.com"
+                class="w-full p-3 bg-[#F3F3F5] rounded-md outline-none">
+            @error('email')
+                <p class="text-red-500">{{ $message }}</p>
+            @enderror
 
-            <input type="email" placeholder="name@email.com"
+            <label for="password">Password</label>
+            <input  type="password" name="password" id="password" placeholder="*******"
                 class="w-full p-3 bg-[#F3F3F5] rounded-md outline-none">
 
-            <input type="password" placeholder="**"
-                class="w-full p-3 bg-[#F3F3F5] rounded-md outline-none">
-
-            <button class="w-full bg-[#C37F43] text-white py-3 rounded-md">
+            <button type="submit" class="w-full bg-[#C37F43] text-white py-3 rounded-md">
                 Login
             </button>
         </form>
