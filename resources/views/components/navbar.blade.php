@@ -1,8 +1,3 @@
-{{-- props untuk slicing aja --}}
-@props([
-
-])
-
 <header x-data="{open: false, scrolled: false}" x-effect="document.body.classList.toggle('overflow-hidden', open)"
   @scroll.window="scrolled = window.scrollY > 10"
   :class="scrolled ? 'shadow-md bg-white' : 'shadow-none bg-transparent'"
@@ -16,16 +11,25 @@
             <a class="hover:text-button transition-all duration-100" href="{{ route('welcome') }}">Home</a>
             <a class="hover:text-button transition-all duration-100" href="/balinese-cultures">Balinese Cultures</a>
             <a class="hover:text-button transition-all duration-100" href="{{ route('about') }}">About Us</a>
-            <a class="hidden hover:text-button transition-all duration-100" href="">Admin Dashboard</a>
+            
+            @can('admin-only')
+                <a class="hover:text-button transition-all duration-100" href="/admin-panel">Admin Dashboard</a>
+            @endcan
         </div>
 
         <div class="hidden md:flex justify-center gap-4">
-            <x-button href="/login" variant="outline" class="h-10 rounded-xl font-normal p-3">Log In</x-button>
-            <x-button href="/register" class="h-10  rounded-xl font-normal p-3">Sign In</x-button>
-            <x-button variant="outline" class="hidden h-10 fill-button transition-all hover:fill-white rounded-xl font-normal p-3">
-                <p>Name</p>
-                <svg class="size-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M297.4 438.6C309.9 451.1 330.2 451.1 342.7 438.6L502.7 278.6C515.2 266.1 515.2 245.8 502.7 233.3C490.2 220.8 469.9 220.8 457.4 233.3L320 370.7L182.6 233.4C170.1 220.9 149.8 220.9 137.3 233.4C124.8 245.9 124.8 266.2 137.3 278.7L297.3 438.7z"/></svg>
-            </x-button>
+            @guest
+                <x-button href="/login" variant="outline" class="h-10 rounded-xl font-normal p-3">Log In</x-button>
+                <x-button href="/register" class="h-10  rounded-xl font-normal p-3">Sign In</x-button>    
+            @endguest
+
+            @auth
+                <form class="hover:text-red-500 transition-all duration-100" action="/logout" method="POST" onsubmit="return confirm('Are you sure you want to logout?')">
+                    @csrf
+                    <button type="submit" class="cursor-pointer">Logout</button>
+                </form>
+            @endauth
+
         </div>
         <button
         class="md:hidden"  
