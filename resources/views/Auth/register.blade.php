@@ -23,10 +23,10 @@
     </head>
 <body class="bg-secondary font-poppins flex items-center justify-center min-h-screen">
 
-<div class="flex max-w-5xl w-full h-max bg-[#F3E9DC] rounded-xl overflow-hidden shadow-lg">
+<div class="flex max-w-5xl w-full h-max bg-secondary rounded-xl overflow-hidden shadow-lg">
 
     <!-- LEFT -->
-    <div class="w-1/2 flex justify-center bg-cover bg-center flex items-center"
+    <div class="w-1/2 flex justify-center bg-cover bg-center items-center"
          style="background-image: url('{{asset('assets/images/home.png')}}');">
 
         <div class="text-primary bg-white/50 h-full py-[45%] w-full text-center">

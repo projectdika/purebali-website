@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Question extends Model
 {
     protected $fillable = [
-        'question_text'
+        'question_text',
+        'correct_answer',
+        'quiz_id',
     ];
 
     public function quiz(): BelongsTo

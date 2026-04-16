@@ -10,7 +10,7 @@ class Option extends Model
 {
     protected $fillable = [
         'option_text',
-        'is_correct' => 'false',
+        'question_id'
     ];
 
     public function question(): BelongsTo

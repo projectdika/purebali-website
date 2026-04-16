@@ -121,16 +121,16 @@
                         
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
-                                @foreach($cultures as $item)
-                                    <div class="swiper-slide flex justify-center items-center"> 
-                                        <x-card 
-                                            :title="$item->title"
-                                            :category="$item->category"
-                                            :link="route('budaya.detail', $item->id)"
-                                            :image="asset('assets/images/' . $item->image)"
-                                        />
-                                    </div>
-                                @endforeach
+                                @foreach($materials as $item)
+    <div class="swiper-slide flex justify-center items-center"> 
+        <x-card 
+            :title="$item->title"
+            :category="$item->category->name"
+            :link="route('culture.show', $item->id)"
+            :image="Storage::url($item->picture)"
+        />
+    </div>
+@endforeach
                             </div>
                         </div>
 
