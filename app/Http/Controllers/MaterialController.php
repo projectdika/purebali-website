@@ -30,73 +30,69 @@ class MaterialController extends Controller
 
     // 🔷 STORE (INI BAGIAN PALING PENTING 🔥)
    public function store(Request $request)
-    {
-        dd($request->all());
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'picture' => 'required|image|mimes:jpg,png|max:1024',
-            'status' => 'required',
-            'category_id' => 'required|exists:categories,id',
+{
+    $validated = $request->validate([
+        'title'       => 'required|string|max:255',
+        'description' => 'required|string',
+        'picture'     => 'required|image|mimes:jpg,png,jpeg|max:1024',
+        'status'      => 'required|in:0,1',  // ubah jadi 0/1
+        'category_id' => 'required|exists:categories,id',
 
-            'questions' => 'required|array|min:1',
-            'questions.*.question_text' => 'required',
-            'questions.*.correct_answer' => 'required',
+        'questions'                      => 'required|array|min:1',
+        'questions.*.question_text'      => 'required|string',
+        'questions.*.correct_answer'     => 'required|integer|min:0|max:3',
+        'questions.*.options'            => 'required|array|size:4',
+        'questions.*.options.*'          => 'required|string', // setiap opsi harus string
+    ]);
 
-            'questions.*.options' => 'required|array|min:4',
-            'questions.*.options.*.option_text' => 'required',
+    DB::beginTransaction();
+    try {
+        // Upload gambar
+        $picturePath = $request->file('picture')->store('materials', 'public');
+
+        // 1. Material
+        $material = Material::create([
+            'title'       => $request->title,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'user_id'     => Auth::id(),
+            'status'      => $request->status, // 0 atau 1
+            'picture'     => $picturePath,
         ]);
-        $pic = NULL;
-        DB::beginTransaction();
-        if($request->hasFile('picture')) {
-            $pic = $request->file('picture')->store('materials', 'public');
-        }
 
-        try {
-            // 🔷 1. MATERIAL
-            $material = Material::create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'category_id' => $request->category_id,
-                'user_id' => Auth::id(),
-                'status' => $request->status,
-                'picture' => $pic
+        // 2. Quiz
+        $quiz = Quiz::create([
+            'material_id' => $material->id,
+            'title'       => $material->title . ' Quiz',
+        ]);
+
+        // 3. Questions & Options
+        foreach ($request->questions as $qData) {
+            $question = Question::create([
+                'quiz_id'        => $quiz->id,
+                'question_text'  => $qData['question_text'],
+                'correct_answer' => $qData['correct_answer'], // indeks jawaban benar
             ]);
 
-            // 🔷 2. QUIZ
-            $quiz = Quiz::create([
-                'material_id' => $material->id,
-                'title' => $material->title . ' Quiz',
-            ]);
-
-            // 🔷 3. QUESTIONS + OPTIONS
-            foreach ($request->questions as $q) {
-
-                $question = Question::create([
-                    'quiz_id' => $quiz->id,
-                    'question_text' => $q['question_text'],
+            foreach ($qData['options'] as $optionText) {
+                Option::create([
+                    'question_id' => $question->id,
+                    'option_text' => $optionText,
                 ]);
-
-                foreach ($q['options'] as $opt) {
-                    Option::create([
-                        'question_id' => $question->id,
-                        'option_text' => $opt['option_text'],
-                        'is_correct' => ($q['correct_answer'] == 'index'),
-                    ]);
-                }
             }
-
-            DB::commit();
-
-            return redirect()->route('dashboard.materials.index')
-                ->with('success', 'Materi dan Quiz berhasil dibuat');
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            return back()->with('error', $e->getMessage());
         }
+
+        DB::commit();
+
+        return redirect()->route('dashboard.materials.index')
+            ->with('success', 'Materi dan Quiz berhasil dibuat.');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return back()->withInput()
+            ->with('error', 'Gagal menyimpan: ' . $e->getMessage());
     }
+}
 
     // 🔷 SHOW
     public function show(Material $material)
