@@ -19,16 +19,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // membuat admin
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-            'phone_number' => '+628214599933',
-        ]);
+
+
+          \App\Models\User::factory(50)->create();
 
         $this->call([
-            CategorySeeder::class
+            MaterialSeeder::class
         ]);
 
     }

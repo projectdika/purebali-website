@@ -3,22 +3,18 @@
 namespace Database\Factories;
 
 use App\Models\Quiz;
+use App\Models\Material;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Quiz>
- */
 class QuizFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Quiz::class;
+
+    public function definition()
     {
         return [
-            //
+            'title'       => $this->faker->sentence(3),
+            'material_id' => Material::factory(),
         ];
     }
 }

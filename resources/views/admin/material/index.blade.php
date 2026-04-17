@@ -133,5 +133,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="px-5 mb-3 mt-6">
+        {{ $materials->links() }}
+    </div>
     </div>
 </x-app-layout>

@@ -120,19 +120,18 @@
                     </div>
 
                     <div class="relative px-2 md:px-12">
-
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 @foreach($materials as $item)
-    <div class="swiper-slide flex justify-center items-center">
-        <x-card
-            :title="$item->title"
-            :category="$item->category->name"
-            :link="route('culture.show', $item->id)"
-            :image="Storage::url($item->picture)"
-        />
-    </div>
-@endforeach
+                                    <div class="swiper-slide flex justify-center items-center">
+                                        <x-card
+                                            :title="$item->title"
+                                            :category="$item->category->name"
+                                            :link="route('culture.show', $item->id)"
+                                            :image="Storage::url($item->picture)"
+                                        />
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
 
