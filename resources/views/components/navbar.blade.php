@@ -11,7 +11,7 @@
             <a class="hover:text-button transition-all duration-100" href="{{ route('home') }}">Home</a>
             <a class="hover:text-button transition-all duration-100" href="{{route('cultures.index')}}">Balinese Cultures</a>
             <a class="hover:text-button transition-all duration-100" href="{{ route('about') }}">About Us</a>
-            
+
             @can('admin-only')
                 <a class="hover:text-button transition-all duration-100" href="{{route('dashboard.materials.index')}}">Admin Dashboard</a>
             @endcan
@@ -19,8 +19,8 @@
 
         <div class="hidden md:flex justify-center gap-4">
             @guest
-                <x-button href="/login" variant="outline" class="h-10 rounded-xl font-normal p-3">Log In</x-button>
-                <x-button href="/register" class="h-10  rounded-xl font-normal p-3">Sign In</x-button>    
+                <x-button href="/login" variant="outline" class="h-10 rounded-xl font-normal p-3">Sign In</x-button>
+                <x-button href="/register" class="h-10  rounded-xl font-normal p-3">Sign Up</x-button>
             @endguest
 
             @auth
@@ -32,7 +32,7 @@
 
         </div>
         <button
-        class="md:hidden"  
+        class="md:hidden"
         type="button"
         aria-label="Toggle menu"
         :aria-expanded="open"
@@ -91,7 +91,9 @@
             <a href="{{route('home')}}" class="mt-10 font-medium text-button text-xl mb-10">Home</a>
             <a href="{{route('cultures.index')}}" class="font-medium text-button text-xl mb-10">Balinese Cultures</a>
             <a href="{{route('about')}}" class="font-medium text-button text-xl mb-10">About Us</a>
-            <a href="{{route('dashboard.materials.index')}}" class="hidden font-medium text-button text-xl mb-10">Admin Dashboard</a>
+            @can('admin-only')
+            <a href="{{route('dashboard.materials.index')}}" class="font-medium text-button text-xl mb-10">Admin Dashboard</a>
+            @endcan
             @auth
             <form method="POST" action="/logout" class="font-medium flex text-red-600 text-xl mb-10">
                 @csrf
@@ -102,16 +104,16 @@
             @guest
             <x-button
             href="/login"
-            class="mb-10 py-2" 
+            class="mb-10 py-2"
             variant="outline"
-            >Log In</x-button>
+            >Sign In</x-button>
             <x-button
             href="/register"
-            class="py-2" 
+            class="py-2"
             variant="primary"
-            >Sign In</x-button>
+            >Sign Up</x-button>
             @endguest
         </nav>
-        
+
     </div>
 </header>
