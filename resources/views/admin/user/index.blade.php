@@ -41,7 +41,7 @@
                         Nomer HP
                     </th>
                     <th class="hidden lg:table-cell px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
-                        Quiz di Kerjakan
+                        Percobaan Quiz
                     </th>
                     <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
                         Aktivitas
