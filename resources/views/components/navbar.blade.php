@@ -29,18 +29,13 @@
             @endguest
 
             @auth
-                <form action="{{ route('logout') }}" method="POST" onsubmit="return confirm('Are you sure you want to logout?')">
-    @csrf
-    <x-button type="submit"
-    variant="outline"
-    size="md"
-           >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <form class="hover:text-red-500 transition-all duration-100" action="/logout" method="POST" onsubmit="return confirm('Are you sure you want to logout?')">
+                    @csrf
+                    <button class="border flex items-center border-primary rounded-xl hover:border-red-500 p-2 cursor-pointer transition-all duration-100" type="submit" class="cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hover:bg-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-        </svg>
-        <span>Logout</span>
-    </x-button>
-</form>
+        </svg><span>Logout</span></button>
+                </form>
             @endauth
 
         </div>

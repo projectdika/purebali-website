@@ -14,11 +14,12 @@
         </x-button>
     </div>
 
-    <form action="" method="GET" class="mx-5 md:mx-35 py-2 justify-center bg-white px-4 shadow-md rounded-xl items-center mt-5 flex gap-4">
+    <form action="{{ route('dashboard.materials.index') }}" method="GET" class="mx-5 md:mx-35 py-2 justify-center bg-white px-4 shadow-md rounded-xl items-center mt-5 flex gap-4">
         @csrf
         <x-input
-        name="search" 
-        value="" 
+        name="search"
+        id="search"
+        value="{{ request('search') }}"
         placeholder="Cari Materi..."/>
         <x-button
         size="md"
@@ -68,13 +69,13 @@
                                 </a>
                             </div>
                         </td>
-                        
+
                         <td class="px-6 text-center py-4">
                             <span class="font-medium text-gray-700">
                                 {{ $data->quiz->questions->count() }}
                             </span>
                         </td>
- 
+
                         <td class="hidden md:table-cell px-6 py-4 text-gray-600">
                             {{ $data->category->name }}
                         </td>
@@ -125,7 +126,7 @@
                                     </svg>
                                 </button>
                                 </form>
-                                
+
                             </div>
                         </td>
                     </tr>
