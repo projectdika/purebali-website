@@ -46,7 +46,7 @@
             <div class="bg-button rounded-lg text-white flex flex-col justify-center items-center p-8 md:p-10">
                 <h3 class="text-2xl font-bold mb-4 font-poppins">Waktu Kuis</h3>
                 <p class="text-md mb-8 font-poppins">Uji pemahaman kamu di kuis ini. Dan dapatkan skor terbaik kamu.</p>
-                <a href="{{ route('quiz.start', $quiz->id) }}" class="text-white bg-button text-lg py-3 rounded-xl font-semibold hover:bg-secondary hover:text-button px-8 duration-100 transition-all font-poppins">Mulai</a>
+                <a href="{{ route('quiz.start', $quiz->id) }}" class="text-button bg-white text-lg py-3 rounded-xl font-semibold hover:bg-secondary  px-8 duration-100 transition-all font-poppins">Mulai</a>
             </div>
         </div>
         @else

@@ -16,9 +16,17 @@ use Illuminate\Support\Facades\Storage;
 class MaterialController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $materials = Material::latest()->get();
+        $query = Material::with('category');
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+        $materials = $query->latest()->paginate(9);
         return view('admin.material.index', compact('materials'));
     }
 
@@ -182,20 +190,20 @@ public function update(Request $request, Material $material)
         // 2. Hapus quiz lama beserta semua data terkait (attempts, answers, questions, options)
         if ($material->quiz) {
             $quiz = $material->quiz;
-            
+
             // Hapus semua attempts yang terkait dengan quiz ini (akan menghapus answers juga jika cascade)
             // Jika cascade tidak diatur, hapus answers dulu
             foreach ($quiz->attempts as $attempt) {
                 $attempt->answers()->delete(); // Hapus answers
                 $attempt->delete();            // Hapus attempt
             }
-            
+
             // Hapus questions dan options
             foreach ($quiz->questions as $question) {
                 $question->options()->delete();
                 $question->delete();
             }
-            
+
             // Hapus quiz
             $quiz->delete();
         }

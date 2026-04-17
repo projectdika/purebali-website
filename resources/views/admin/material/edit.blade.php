@@ -76,7 +76,7 @@
                     >
                 </div>
                 <div class="col-span-full">
-                    <label for="picture" class="font-bold text-sm text-gray-800">Foto Utama (Biarkan kosong jika tidak ingin mengganti)</label>
+                    <label for="picture" class="font-bold text-sm text-gray-800">Foto Utama</label>
                     <input
                         id="picture"
                         name="picture"

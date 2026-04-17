@@ -1,26 +1,18 @@
 <x-app-layout>
     <div class="px-5 pt-2 md:px-35 flex justify-between items-center">
         <div>
-            <h1 class="text-black text-xl md:text-3xl mb-2 font-bold">Daftar Materi</h1>
-            <p class="text-xs md:text-md text-gray-600">Kelola Daftar Materi</p>
+            <h1 class="text-black text-xl md:text-3xl mb-2 font-bold">Daftar User</h1>
+            <p class="text-xs md:text-md text-gray-600">Kelola Daftar User</p>
         </div>
-        <x-button
-        class="gap-1 text-sm fill-white hover:fill-button"
-        size="md"
-        href="/dashboard/materials/create"
-        >
-            <svg class="size-3 md:size-4 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
-            <p>Tambah Materi</p>
-        </x-button>
     </div>
 
-    <form action="{{ route('dashboard.materials.index') }}" method="GET" class="mx-5 md:mx-35 py-2 justify-center bg-white px-4 shadow-md rounded-xl items-center mt-5 flex gap-4">
+    <form action="{{ route('dashboard.users.index') }}" method="GET" class="mx-5 md:mx-35 py-2 justify-center bg-white px-4 shadow-md rounded-xl items-center mt-5 flex gap-4">
         @csrf
         <x-input
         name="search"
         id="search"
         value="{{ request('search') }}"
-        placeholder="Cari Materi..."/>
+        placeholder="Cari User..."/>
         <x-button
         size="md"
         tag="button"
@@ -37,16 +29,19 @@
             <thead>
                 <tr class="border-b font-poppins border-stone-100">
                     <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider w-[40%]">
-                        Daftar Materi
+                        Nama User
                     </th>
                     <th class="px-6 py-4 text-center text-sm font-semibold text-black tracking-wider">
-                        Jumlah Soal
+                        Email
+                    </th>
+                    <th class="px-6 py-4 text-center text-sm font-semibold text-black tracking-wider">
+                        Role
                     </th>
                     <th class="hidden md:table-cell px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
-                        Kategori
+                        Nomer HP
                     </th>
                     <th class="hidden lg:table-cell px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
-                        Status
+                        Percobaan Quiz
                     </th>
                     <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
                         Aktivitas
@@ -55,51 +50,39 @@
             </thead>
 
             <tbody class="divide-y divide-stone-100">
-                @foreach ($materials as $data)
+                @foreach ($users as $data)
                     <tr class="hover:bg-stone-50/70 transition-colors duration-150 group">
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <img
-                                    src="{{ Storage::url($data->picture) }}"
-                                    alt="{{ $data['title'] }}"
-                                    class="w-12 h-12 rounded-xl object-cover shrink-0 border border-stone-200"
-                                />
-                                <a href="{{route('dashboard.materials.show', $data->id)}}" class="font-medium text-gray-800 group-hover:text-amber-800 transition-colors duration-150">
-                                    {{ $data['title'] }}
+                                <a href="{{route('dashboard.users.show', $data->id)}}" class="font-medium text-gray-800 group-hover:text-amber-800 transition-colors duration-150">
+                                    {{ $data['name'] }}
                                 </a>
                             </div>
                         </td>
 
                         <td class="px-6 text-center py-4">
                             <span class="font-medium text-gray-700">
-                                {{ $data->quiz->questions->count() }}
+                                {{ $data['email'] }}
+                            </span>
+                        </td>
+                        <td class="px-6 text-center py-4">
+                            <span class="font-medium text-gray-700">
+                                {{ $data['role'] }}
                             </span>
                         </td>
 
                         <td class="hidden md:table-cell px-6 py-4 text-gray-600">
-                            {{ $data->category->name }}
+                            {{ $data['phone_number'] }}
                         </td>
 
-                        <td class="hidden lg:table-cell px-6 py-4">
-                            @if ($data['status'] == '1')
-                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full
-                                             text-xs font-medium bg-green-100 text-green-700">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                                    Aktif
-                                </span>
-                            @else
-                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full
-                                             text-xs font-medium bg-red-100 text-red-600">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                                    Nonaktif
-                                </span>
-                            @endif
+                        <td class="hidden lg:table-cell text-gray-600 px-6 py-4">
+                            {{ $data->attempts->count() }}
                         </td>
 
                         <td class=" px-6 py-4">
                             <div class="flex items-center gap-1">
                                 <a
-                                    href="{{route('dashboard.materials.edit', $data->id)}}"
+                                    href="{{route('dashboard.users.edit', $data->id)}}"
                                     aria-label="Edit {{ $data['title'] }}"
                                     class="p-2 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50
                                            transition-all duration-150"
@@ -110,12 +93,12 @@
                                                m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                     </svg>
                                 </a>
-                                <form action="{{ route('dashboard.materials.destroy', $data) }}" method="POST" onsubmit="return confirm('Yakin hapus?')">
+                                <form action="{{ route('dashboard.users.destroy', $data) }}" method="POST" onsubmit="return confirm('Yakin hapus?')">
                                     @csrf
                                     @method('DELETE')
                                     <button
                                     type="submit"
-                                    aria-label="Hapus {{ $data['title'] }}"
+                                    aria-label="Hapus {{ $data['name'] }}"
                                     class="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50
                                     transition-all duration-150"
                                     >

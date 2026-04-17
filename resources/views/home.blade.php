@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="icon" type="image/png" href="{{ asset('assets/images/favico.png') }}">
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -13,18 +13,18 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-        
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
             <style>
                 :root {
-                    --swiper-navigation-color: #5E3023; 
+                    --swiper-navigation-color: #5E3023;
                     --swiper-theme-color: #5E3023;
                 }
 
                 .bali-pattern {
                     position: relative;
-                    background-image: url('{{ asset("assets/images/home.png") }}'); 
+                    background-image: url('{{ asset("assets/images/home.png") }}');
                     background-size: cover;
                     background-position: center;
                     background-repeat: no-repeat;
@@ -36,7 +36,7 @@
                     content: "";
                     position: absolute;
                     inset: 0;
-                    background-color: rgba(113, 84, 55, 0.6); 
+                    background-color: rgba(113, 84, 55, 0.6);
                     z-index: 0;
                 }
 
@@ -85,11 +85,11 @@
                 }
             </style>
     </head>
-    <body>     
+    <body>
         <x-navbar></x-navbar>
 
         <main>
-            <section class="bali-pattern text-white py-50 md:py-70 font-poppins">
+            <section class="bali-pattern text-white py-50 md:py-50 font-poppins">
                 <div class="container mx-auto px-6 text-center">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4">
                         Mari Mengenal Dekat <br> Budaya Bali
@@ -99,15 +99,17 @@
                         Pengalaman Liburan yang Tak Terlupakan Menanti Kamu
                     </p>
 
+                    <form method="get" action="{{ route('cultures.index') }}">
                     <div class="relative max-w-xl mx-auto">
-                        <input type="text" placeholder="Telusuri Budaya..." class="w-full bg-white text-[#715437] px-6 py-4 rounded-xl pl-14 pr-32 focus:outline-none focus:ring-2 focus:ring-[#B08968]">
+                        <input name="search" id="search" value="{{ request('search') }}" type="text" placeholder="Telusuri Budaya..." class="w-full bg-white text-[#715437] px-6 py-4 rounded-xl pl-14 pr-32 focus:outline-none focus:ring-2 focus:ring-[#B08968]">
                         <div class="absolute left-5 top-1/2 -translate-y-1/2 text-[#715437]">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </div>
-                        <x-button class="absolute right-2 inset-y-1.5 bg-[#B08968] text-white px-8 rounded-xl">
+                        <button type="submit" class="absolute right-2 inset-y-1.5 cursor-pointer bg-button hover:bg-primary duration-100 transition-all text-white px-8 rounded-xl">
                             Cari
-                        </x-button>
+                        </button>
                     </div>
+                    </form>
             </section>
 
             <section class="py-16 bg-secondary font-poppins jus">
@@ -118,12 +120,12 @@
                     </div>
 
                     <div class="relative px-2 md:px-12">
-                        
+
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 @foreach($materials as $item)
-    <div class="swiper-slide flex justify-center items-center"> 
-        <x-card 
+    <div class="swiper-slide flex justify-center items-center">
+        <x-card
             :title="$item->title"
             :category="$item->category->name"
             :link="route('culture.show', $item->id)"
@@ -155,9 +157,9 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var swiper = new Swiper(".mySwiper", {
-                    slidesPerView: 1,    
-                    centeredSlides: true,  
-                    spaceBetween: 30,     
+                    slidesPerView: 1,
+                    centeredSlides: true,
+                    spaceBetween: 30,
                     loop: true,
                     navigation: {
                         nextEl: ".swiper-button-next",
@@ -180,7 +182,7 @@
                 });
             });
         </script>
-        
+
     </body>
-    
+
 </html>

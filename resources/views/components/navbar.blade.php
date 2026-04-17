@@ -8,31 +8,73 @@
         </a>
 
         <div class="hidden md:flex justify-center gap-8">
-            <a class="hover:text-button transition-all duration-100" href="{{ route('home') }}">Home</a>
-            <a class="hover:text-button transition-all duration-100" href="{{route('cultures.index')}}">Balinese Cultures</a>
-            <a class="hover:text-button transition-all duration-100" href="{{ route('about') }}">About Us</a>
-            
+            <a class="transition-all duration-100 {{ request()->routeIs('home') ? 'text-button' : 'hover:text-button' }}"
+   href="{{ route('home') }}">Home</a>
+
+<a class="transition-all duration-100 {{ request()->routeIs('cultures.index') ? 'text-button' : 'hover:text-button' }}"
+   href="{{ route('cultures.index') }}">Balinese Cultures</a>
+
+<a class="transition-all duration-100 {{ request()->routeIs('about') ? 'text-button' : 'hover:text-button' }}"
+   href="{{ route('about') }}">About Us</a>
+
             @can('admin-only')
-                <a class="hover:text-button transition-all duration-100" href="{{route('dashboard.materials.index')}}">Admin Dashboard</a>
+                <a class="transition-all duration-100 {{ request()->routeIs('dashboard.materials.index') ? 'text-button' : 'hover:text-button' }}" href="{{route('dashboard.materials.index')}}">Manage Material</a>
+                <a class="transition-all duration-100 {{ request()->routeIs('dashboard.users.index') ? 'text-button' : 'hover:text-button' }}" href="{{route('dashboard.users.index')}}">Manage User</a>
             @endcan
         </div>
 
         <div class="hidden md:flex justify-center gap-4">
             @guest
-                <x-button href="/login" variant="outline" class="h-10 rounded-xl font-normal p-3">Log In</x-button>
-                <x-button href="/register" class="h-10  rounded-xl font-normal p-3">Sign In</x-button>    
+                <x-button href="/login" variant="outline" class="h-10 rounded-xl font-normal p-3">Sign In</x-button>
+                <x-button href="/register" class="h-10  rounded-xl font-normal p-3">Sign Up</x-button>
             @endguest
 
             @auth
-                <form class="hover:text-red-500 transition-all duration-100" action="/logout" method="POST" onsubmit="return confirm('Are you sure you want to logout?')">
-                    @csrf
-                    <button type="submit" class="cursor-pointer">Logout</button>
-                </form>
-            @endauth
+    <div class="relative" x-data="{ open: false }">
+        <button @click="open = !open"
+                class="flex items-center gap-2 border duration-100 transition-all cursor-pointer hover:border-button p-2 rounded-2xl text-gray-700 hover:text-button transition duration-150">
+            <span class="text-md">Halo, {{ Auth::user()->name }}</span>
+            <svg class="w-4 h-4 transition-transform duration-200"
+                 :class="{'rotate-180': open}"
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+
+        <div x-show="open"
+             @click.away="open = false"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             class="absolute right-0 mt-2 w-48 bg-secondary rounded-xl shadow-lg shadow-white border border-gray-100 py-1 z-50">
+
+            <a href="{{ route('profile.edit') }}"
+               class="flex items-center gap-2 px-4 rounded-xl py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-800 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                Profil Saya
+            </a>
+
+            <div class="border-t border-gray-100 my-1"></div>
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit"
+                        class="w-full flex items-center gap-2 px-4 py-2 rounded-xl text-sm text-red-600 hover:bg-red-50 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    Logout
+                </button>
+            </form>
+        </div>
+    </div>
+@endauth
 
         </div>
         <button
-        class="md:hidden"  
+        class="md:hidden"
         type="button"
         aria-label="Toggle menu"
         :aria-expanded="open"
@@ -91,7 +133,10 @@
             <a href="{{route('home')}}" class="mt-10 font-medium text-button text-xl mb-10">Home</a>
             <a href="{{route('cultures.index')}}" class="font-medium text-button text-xl mb-10">Balinese Cultures</a>
             <a href="{{route('about')}}" class="font-medium text-button text-xl mb-10">About Us</a>
-            <a href="{{route('dashboard.materials.index')}}" class="hidden font-medium text-button text-xl mb-10">Admin Dashboard</a>
+            @can('admin-only')
+            <a href="{{route('dashboard.materials.index')}}" class="font-medium text-button text-xl mb-10">Manage Material</a>
+            <a href="{{route('dashboard.users.index')}}" class="font-medium text-button text-xl mb-10">Manage User</a>
+            @endcan
             @auth
             <form method="POST" action="/logout" class="font-medium flex text-red-600 text-xl mb-10">
                 @csrf
@@ -102,16 +147,16 @@
             @guest
             <x-button
             href="/login"
-            class="mb-10 py-2" 
+            class="mb-10 py-2"
             variant="outline"
-            >Log In</x-button>
+            >Sign In</x-button>
             <x-button
             href="/register"
-            class="py-2" 
+            class="py-2"
             variant="primary"
-            >Sign In</x-button>
+            >Sign Up</x-button>
             @endguest
         </nav>
-        
+
     </div>
 </header>
