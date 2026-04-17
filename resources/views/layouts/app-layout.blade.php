@@ -26,18 +26,6 @@
         {{-- NAV SUDAH INCLUDE HEADER --}}
         <x-navbar></x-navbar>
 
-        {{-- INI PAKEK DUMMY DATA, KALO KALIAN ADA PERLU DUMMY DATA TULIS DISINI AJA --}}
-        @php
-            $dummyData = [
-                    'title' => 'Tari Baris Gede',
-                    'category' => 'Tari Bali',
-                    'link' => '#',
-                    'image' => 'assets/images/dummyCardImage.jpg',
-                    'jumlah_soal' => '10',
-                    'status' => 'aktif'
-            ]
-        @endphp
-
         {{-- MAIN CONTENT --}}
         <main class="h-auto w-full pb-5 bg-secondary">
             {{ $slot }}

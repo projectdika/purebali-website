@@ -113,12 +113,10 @@ public function edit(Material $material)
     $categories = Category::all();
     $material->load(['quiz.questions.options']);
 
-    // Siapkan data questions untuk Alpine.js
     $questionsData = [];
-    if ($material->quiz) {
+    if ($material->quiz && $material->quiz->questions->count()) {
         foreach ($material->quiz->questions as $question) {
             $options = $question->options->pluck('option_text')->toArray();
-            // Pastikan selalu 4 opsi, jika kurang tambahkan string kosong
             while (count($options) < 4) {
                 $options[] = '';
             }
@@ -131,7 +129,7 @@ public function edit(Material $material)
         }
     }
 
-    // Jika tidak ada pertanyaan, beri satu placeholder kosong
+    // Jika kosong, beri satu placeholder
     if (empty($questionsData)) {
         $questionsData[] = [
             'id'             => 1,
@@ -143,7 +141,6 @@ public function edit(Material $material)
 
     return view('admin.material.edit', compact('material', 'categories', 'questionsData'));
 }
-
 // 🔷 UPDATE - Proses update materi dan quiz (replace quiz lama dengan baru)
 public function update(Request $request, Material $material)
 {
@@ -165,7 +162,6 @@ public function update(Request $request, Material $material)
     try {
         // Update gambar jika ada file baru
         if ($request->hasFile('picture')) {
-            // Hapus gambar lama
             if ($material->picture && Storage::disk('public')->exists($material->picture)) {
                 Storage::disk('public')->delete($material->picture);
             }
@@ -183,10 +179,25 @@ public function update(Request $request, Material $material)
             'picture'     => $picturePath,
         ]);
 
-        // 2. Hapus quiz lama beserta semua pertanyaan dan opsi (cascade delete di database atau manual)
+        // 2. Hapus quiz lama beserta semua data terkait (attempts, answers, questions, options)
         if ($material->quiz) {
-            // Karena relasi questions dan options menggunakan foreign key dengan cascade, cukup hapus quiz
-            $material->quiz->delete();
+            $quiz = $material->quiz;
+            
+            // Hapus semua attempts yang terkait dengan quiz ini (akan menghapus answers juga jika cascade)
+            // Jika cascade tidak diatur, hapus answers dulu
+            foreach ($quiz->attempts as $attempt) {
+                $attempt->answers()->delete(); // Hapus answers
+                $attempt->delete();            // Hapus attempt
+            }
+            
+            // Hapus questions dan options
+            foreach ($quiz->questions as $question) {
+                $question->options()->delete();
+                $question->delete();
+            }
+            
+            // Hapus quiz
+            $quiz->delete();
         }
 
         // 3. Buat quiz baru
@@ -222,7 +233,6 @@ public function update(Request $request, Material $material)
             ->with('error', 'Gagal memperbarui: ' . $e->getMessage());
     }
 }
-
 // 🔷 DELETE - Hapus materi beserta quiz, pertanyaan, dan opsi
 public function destroy(Material $material)
 {
