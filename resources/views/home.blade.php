@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="icon" type="image/png" href="{{ asset('assets/images/favico.png') }}">
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -99,21 +99,17 @@
                         Pengalaman Liburan yang Tak Terlupakan Menanti Kamu
                     </p>
 
-                    <a href="{{ route('cultures.index') }}"
-   class="inline-flex items-center gap-2 px-8 py-3.5
-          bg-button
-          text-white text-base font-medium
-          rounded-full shadow-lg shadow-amber-900/30
-          hover:shadow-xl hover:shadow-amber-900/40
-          hover:scale-105 active:scale-95
-          transition-all duration-300 ease-out
-          border border-secondary
-          backdrop-blur-sm">
-    <span>Jelajahi Budaya</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-    </svg>
-</a>
+                    <form method="get" action="{{ route('cultures.index') }}">
+                    <div class="relative max-w-xl mx-auto">
+                        <input name="search" id="search" value="{{ request('search') }}" type="text" placeholder="Telusuri Budaya..." class="w-full bg-white text-[#715437] px-6 py-4 rounded-xl pl-14 pr-32 focus:outline-none focus:ring-2 focus:ring-[#B08968]">
+                        <div class="absolute left-5 top-1/2 -translate-y-1/2 text-[#715437]">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                        <button type="submit" class="absolute right-2 inset-y-1.5 cursor-pointer bg-button hover:bg-primary duration-100 transition-all text-white px-8 rounded-xl">
+                            Cari
+                        </button>
+                    </div>
+                    </form>
             </section>
 
             <section class="py-16 bg-secondary font-poppins jus">

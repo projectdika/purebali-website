@@ -5,13 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\QuizController;
-
-Route::get('/Question', function(){
-     return view('Question');
-});
-Route::get('/result', function(){
-     return view('result');
-});
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/cultures', [HomeController::class, 'cultures'])->name('cultures.index');
@@ -23,6 +18,8 @@ Route::get('/about', function() {
 
 Route::middleware('auth')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/quiz/{quiz}/start', [QuizController::class, 'start'])->name('quiz.start');
     Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quiz.submit');
     Route::get('/quiz/result/{attempt}', [QuizController::class, 'result'])->name('quiz.result');
@@ -38,6 +35,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('admin')->group(function() {
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::resource('materials', MaterialController::class);
+        Route::resource('users', UserController::class);
     });
 });
 

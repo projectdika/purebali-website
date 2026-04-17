@@ -6,15 +6,15 @@
         </section>
         <nav class="flex flex-col">
             <h3 class="font-semibold text-xl mb-3">Quick Links</h3>
-            <a href="#" class="mb-3 group relative">
+            <a href="{{ route('home') }}" class="mb-3 group relative">
                 <p>Home</p>
                 <span class="absolute left-0 -bottom-1 w-11 h-0.5 bg-white origin-left transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
-            <a href="#" class="mb-3 relative inline-block group">
+            <a href="{{ route('cultures.index') }}" class="mb-3 relative inline-block group">
                 <p>Balinese Cultures</p>
                 <span class="absolute left-0 -bottom-1 w-full h-0.5 bg-white origin-left transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
-            <a href="#" class="mb-3 relative inline-block group">
+            <a href="/about" class="mb-3 relative inline-block group">
                 <p>About Us</p>
                 <span class="absolute left-0 -bottom-1 w-15 h-0.5 bg-white origin-left transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
