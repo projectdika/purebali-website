@@ -5,13 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\QuizController;
-
-Route::get('/Question', function(){
-     return view('Question');
-});
-Route::get('/result', function(){
-     return view('result');
-});
+use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/cultures', [HomeController::class, 'cultures'])->name('cultures.index');
@@ -38,6 +32,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('admin')->group(function() {
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::resource('materials', MaterialController::class);
+        Route::resource('users', UserController::class);
     });
 });
 

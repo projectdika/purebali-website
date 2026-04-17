@@ -18,7 +18,8 @@
    href="{{ route('about') }}">About Us</a>
 
             @can('admin-only')
-                <a class="transition-all duration-100 {{ request()->routeIs('dashboard.materials.index') ? 'text-button' : 'hover:text-button' }}" href="{{route('dashboard.materials.index')}}">Admin Dashboard</a>
+                <a class="transition-all duration-100 {{ request()->routeIs('dashboard.materials.index') ? 'text-button' : 'hover:text-button' }}" href="{{route('dashboard.materials.index')}}">Manage Material</a>
+                <a class="transition-all duration-100 {{ request()->routeIs('dashboard.users.index') ? 'text-button' : 'hover:text-button' }}" href="{{route('dashboard.users.index')}}">Manage User</a>
             @endcan
         </div>
 
@@ -32,7 +33,7 @@
                 <form class="hover:text-red-500 transition-all duration-100" action="/logout" method="POST" onsubmit="return confirm('Are you sure you want to logout?')">
                     @csrf
                     <button class="border flex items-center border-primary rounded-xl hover:border-red-500 p-2 cursor-pointer transition-all duration-100" type="submit" class="cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hover:bg-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
         </svg><span>Logout</span></button>
                 </form>
@@ -100,7 +101,8 @@
             <a href="{{route('cultures.index')}}" class="font-medium text-button text-xl mb-10">Balinese Cultures</a>
             <a href="{{route('about')}}" class="font-medium text-button text-xl mb-10">About Us</a>
             @can('admin-only')
-            <a href="{{route('dashboard.materials.index')}}" class="font-medium text-button text-xl mb-10">Admin Dashboard</a>
+            <a href="{{route('dashboard.materials.index')}}" class="font-medium text-button text-xl mb-10">Manage Material</a>
+            <a href="{{route('dashboard.users.index')}}" class="font-medium text-button text-xl mb-10">Manage User</a>
             @endcan
             @auth
             <form method="POST" action="/logout" class="font-medium flex text-red-600 text-xl mb-10">
