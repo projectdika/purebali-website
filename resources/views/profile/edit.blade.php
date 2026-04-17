@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="min-h-screen bg-secondary py-8 px-4 font-poppins">
         <div class="max-w-3xl mx-auto">
-            {{-- Header --}}
+
             <div class="mb-6">
                 <a href="{{ route('home') }}"
                    class="inline-flex items-center gap-2 px-4 py-2 border border-button text-button rounded-lg text-sm font-medium hover:bg-button hover:text-white transition-all duration-200">
@@ -12,20 +12,17 @@
                 </a>
             </div>
 
-            {{-- Judul --}}
             <div class="mb-6">
                 <h1 class="text-2xl font-bold text-primary">Edit Profil</h1>
                 <p class="text-sm text-gray-500 mt-1">Perbarui informasi pribadi Anda</p>
             </div>
 
-            {{-- Success Message --}}
             @if (session('success'))
                 <div class="mb-4 bg-green-50 border-l-4 border-green-500 text-green-700 p-4 rounded-r-lg">
                     {{ session('success') }}
                 </div>
             @endif
 
-            {{-- Error Messages --}}
             @if ($errors->any())
                 <div class="mb-4 bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r-lg">
                     <ul class="list-disc list-inside text-sm">
@@ -36,12 +33,10 @@
                 </div>
             @endif
 
-            {{-- Form --}}
             <form action="{{ route('profile.update') }}" method="POST" class="bg-white rounded-2xl shadow-sm border border-stone-100 p-6 sm:p-8">
                 @csrf
                 @method('PUT')
 
-                {{-- Nama --}}
                 <div class="mb-5">
                     <label for="name" class="block font-medium text-sm text-gray-700 mb-1">Nama Lengkap</label>
                     <input
@@ -54,7 +49,6 @@
                     >
                 </div>
 
-                {{-- Email --}}
                 <div class="mb-5">
                     <label for="email" class="block font-medium text-sm text-gray-700 mb-1">Alamat Email</label>
                     <input
@@ -67,7 +61,6 @@
                     >
                 </div>
 
-                {{-- Divider --}}
                 <div class="relative my-8">
                     <div class="absolute inset-0 flex items-center">
                         <div class="w-full border-t border-stone-200"></div>
@@ -77,7 +70,6 @@
                     </div>
                 </div>
 
-                {{-- Password Saat Ini --}}
                 <div class="mb-5">
                     <label for="current_password" class="block font-medium text-sm text-gray-700 mb-1">Password Saat Ini</label>
                     <input
@@ -89,7 +81,6 @@
                     >
                 </div>
 
-                {{-- Password Baru --}}
                 <div class="mb-5">
                     <label for="password" class="block font-medium text-sm text-gray-700 mb-1">Password Baru</label>
                     <input
@@ -101,7 +92,6 @@
                     >
                 </div>
 
-                {{-- Konfirmasi Password Baru --}}
                 <div class="mb-6">
                     <label for="password_confirmation" class="block font-medium text-sm text-gray-700 mb-1">Konfirmasi Password Baru</label>
                     <input
@@ -113,7 +103,6 @@
                     >
                 </div>
 
-                {{-- Tombol --}}
                 <div class="flex items-center justify-end gap-3 pt-4 border-t border-stone-100">
                     <a href="{{ route('home') }}" class="px-5 py-2.5 border border-stone-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition">Batal</a>
                     <button type="submit" class="px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-xl shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2">Simpan Perubahan</button>

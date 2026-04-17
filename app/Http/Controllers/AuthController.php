@@ -31,7 +31,7 @@ class AuthController extends Controller
             'email' => 'Email atau password salah!'
         ]);
     }
-    
+
     public function register()
     {
         return view('auth.register');
@@ -39,7 +39,7 @@ class AuthController extends Controller
 
     public function registerPost(Request $request)
     {
-        $validate = $request->validate([ 
+        $validate = $request->validate([
             'name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'unique:users,email'],
             'password' => ['required', 'min:8', 'confirmed'],
@@ -55,35 +55,7 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
-    
-    // public function profile()
-    // {
-    //     return view('auth.profile');
-    // }
 
-    // public function profileUpdate(Request $request)
-    // {
-    //     $user = Auth::user();
-
-    //     $request->validate([
-    //         'name' => 'required|string|max:100',
-    //         'username' => 'required|string|max:50|unique:users,username,' . $user->id,
-    //         'photo' => 'nullable|image|max:2048',
-    //     ]);
-
-    //     $data = $request->only('name', 'username');
-
-    //     if ($request->hasFile('photo')) {
-    //         if ($user->photo) {
-    //             Storage::disk('public')->delete($user->photo);
-    //         }
-    //         $data['photo'] = $request->file('photo')->store('photos', 'public');
-    //     }
-
-    //     $user->update($data);
-
-    //     return redirect()->back()->with('success', 'Profile updated successfully.');
-    // }
 
     public function logout(Request $request)
     {

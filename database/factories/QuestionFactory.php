@@ -3,22 +3,19 @@
 namespace Database\Factories;
 
 use App\Models\Question;
+use App\Models\Quiz;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Question>
- */
 class QuestionFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Question::class;
+
+    public function definition()
     {
         return [
-            //
+            'quiz_id'        => Quiz::factory(),
+            'question_text'  => $this->faker->sentence(8) . '?',
+            'correct_answer' => $this->faker->numberBetween(0, 3),
         ];
     }
 }

@@ -9,18 +9,14 @@ use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
-    /**
-     * Tampilkan form edit profil
-     */
+
     public function edit()
     {
         $user = Auth::user();
         return view('profile.edit', compact('user'));
     }
 
-    /**
-     * Update profil user
-     */
+    
     public function update(Request $request)
     {
         $user = Auth::user();

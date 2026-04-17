@@ -9,7 +9,6 @@
         <p class="text-sm mt-1.5 mb-5 text-gray-500">Edit Materi Budaya</p>
     </div>
 
-    {{-- Error handling --}}
     @if ($errors->any())
         <div class="mx-4 sm:mx-8 lg:mx-16 xl:mx-32 2xl:mx-40 mb-4">
             <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r-lg">
@@ -59,7 +58,6 @@
         @csrf
         @method('PUT')
 
-        {{-- INFORMASI BUDAYA --}}
         <fieldset class="bg-white rounded-2xl shadow-sm border border-stone-100 p-5 sm:p-6 mb-5">
             <h2 class="text-xl font-bold mb-5 text-gray-800">Informasi Budaya</h2>
 
@@ -136,7 +134,6 @@
             </div>
         </fieldset>
 
-        {{-- PERTANYAAN KUIS --}}
         <fieldset class="space-y-4">
             <template x-for="(question, index) in questions" :key="question.id">
                 <div
@@ -220,7 +217,6 @@
             </div>
         </fieldset>
 
-        {{-- TOMBOL AKSI --}}
         <div class="fixed bottom-0 left-0 right-0 z-20 bg-white/90 backdrop-blur-md border-t border-stone-200 px-4 sm:px-8 lg:px-16 xl:px-32 2xl:px-40 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p class="text-xs text-gray-400 w-full sm:w-auto text-center sm:text-left">
                 <span x-text="questions.length"></span> pertanyaan ditambahkan
