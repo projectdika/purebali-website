@@ -21,78 +21,78 @@
             </style>
         @endif
     </head>
-<body class="bg-secondary font-poppins flex items-center justify-center h-auto py-8">
-    <div class="flex max-w-5xl w-full bg-secondary rounded-xl overflow-hidden shadow-lg min-h-[600px] mt-30">
-        <!-- LEFT -->
-        <div class="w-1/2 flex justify-center bg-cover bg-center items-center"
-             style="background-image: url('{{ asset('assets/images/home.png') }}');">
-            <div class="text-primary bg-white/50 h-full w-full flex flex-col items-center justify-center py-20 text-center">
-                <h1 class="text-2xl font-bold">
-                    Bergabung Bersama Kami
-                </h1>
-                <p class="text-sm mt-2">
-                    Mulai perjalananmu mengenal budaya Bali
+    <body class="bg-secondary font-poppins flex items-center justify-center h-auto py-8">
+        <div class="flex max-w-5xl w-full bg-secondary rounded-xl overflow-hidden shadow-lg min-h-[600px] mt-30">
+            <!-- LEFT -->
+            <div class="w-1/2 flex justify-center bg-cover bg-center items-center"
+                style="background-image: url('{{ asset('assets/images/home.png') }}');">
+                <div class="text-primary bg-white/50 h-full w-full flex flex-col items-center justify-center py-20 text-center">
+                    <h1 class="text-2xl font-bold">
+                        Bergabung Bersama Kami
+                    </h1>
+                    <p class="text-sm mt-2">
+                        Mulai perjalananmu mengenal budaya Bali
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="w-1/2 p-10 flex flex-col justify-center py-8">
+                <p class="text-sm text-black/60 mb-1">Pure Bali</p>
+                <h2 class="text-xl font-semibold mb-2">
+                    Create Your Account
+                </h2>
+                <p class="text-sm text-black/60 mb-6">
+                    Already have an account?
+                    <a href="/login" class="text-primary font-medium">Login</a>
                 </p>
+
+                <form method="POST" action="{{ route('register.post') }}" class="space-y-4">
+                    @csrf
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama</label>
+                        <input value="{{ old('name') }}" type="text" name="name" id="name"
+                            placeholder="Masukan Nama Lengkap"
+                            class="w-full p-3 bg-input rounded-md outline-none">
+                        @error('name')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="email" value="{{ old('email') }}" name="email"
+                            placeholder="Masukan Alamat Email"
+                            class="w-full p-3 bg-input rounded-md outline-none">
+                        @error('email')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
+                    </div>
+
+                    <div>
+                        <label for="phone_number" class="block text-sm font-medium text-gray-700 mb-1">Nomor HP</label>
+                        <input type="text" id="phone_number" value="{{ old('phone_number') }}" name="phone_number"
+                            placeholder="Masukan Nomor HP"
+                            class="w-full p-3 bg-input rounded-md outline-none">
+                        @error('phone_number')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" name="password" id="password"
+                            placeholder="Masukan Password"
+                            class="w-full p-3 bg-input rounded-md outline-none">
+                    </div>
+
+                    <div>
+                        <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation"
+                            placeholder="Konfirmasi Password"
+                            class="w-full p-3 bg-input rounded-md outline-none">
+                    </div>
+
+                    <button type="submit" class="w-full bg-button text-white py-3 rounded-md hover:bg-button/90 transition">
+                        Register
+                    </button>
+                </form>
             </div>
         </div>
-
-        <!-- RIGHT -->
-        <div class="w-1/2 p-10 flex flex-col justify-center py-8">
-            <p class="text-sm text-black/60 mb-1">Pure Bali</p>
-            <h2 class="text-xl font-semibold mb-2">
-                Create Your Account
-            </h2>
-            <p class="text-sm text-black/60 mb-6">
-                Already have an account?
-                <a href="/login" class="text-primary font-medium">Login</a>
-            </p>
-
-            <form method="POST" action="{{ route('register.post') }}" class="space-y-4">
-                @csrf
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama</label>
-                    <input value="{{ old('name') }}" type="text" name="name" id="name"
-                           placeholder="Masukan Nama Lengkap"
-                           class="w-full p-3 bg-input rounded-md outline-none">
-                    @error('name')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
-                </div>
-
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input type="email" id="email" value="{{ old('email') }}" name="email"
-                           placeholder="Masukan Alamat Email"
-                           class="w-full p-3 bg-input rounded-md outline-none">
-                    @error('email')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
-                </div>
-
-                <div>
-                    <label for="phone_number" class="block text-sm font-medium text-gray-700 mb-1">Nomor HP</label>
-                    <input type="text" id="phone_number" value="{{ old('phone_number') }}" name="phone_number"
-                           placeholder="Masukan Nomor HP"
-                           class="w-full p-3 bg-input rounded-md outline-none">
-                    @error('phone_number')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
-                </div>
-
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <input type="password" name="password" id="password"
-                           placeholder="Masukan Password"
-                           class="w-full p-3 bg-input rounded-md outline-none">
-                </div>
-
-                <div>
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
-                    <input type="password" id="password_confirmation" name="password_confirmation"
-                           placeholder="Konfirmasi Password"
-                           class="w-full p-3 bg-input rounded-md outline-none">
-                </div>
-
-                <button type="submit" class="w-full bg-button text-white py-3 rounded-md hover:bg-button/90 transition">
-                    Register
-                </button>
-            </form>
-        </div>
-    </div>
-</body>
+    </body>
 
 </html>

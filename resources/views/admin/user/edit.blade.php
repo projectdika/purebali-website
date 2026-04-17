@@ -1,5 +1,4 @@
 <x-app-layout>
-    {{-- Error Handling --}}
     @if ($errors->any())
         <div class="mx-4 sm:mx-8 lg:mx-16 xl:mx-32 2xl:mx-40 mb-4">
             <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r-lg">
@@ -30,7 +29,6 @@
         </a>
             <h2 class="text-xl font-bold mb-6 text-gray-800">Informasi Pengguna</h2>
 
-            {{-- Nama --}}
             <div class="mb-5">
                 <label for="name" class="block font-medium text-sm text-gray-700 mb-1">Nama Lengkap</label>
                 <input
@@ -43,7 +41,6 @@
                 >
             </div>
 
-            {{-- Email --}}
             <div class="mb-5">
                 <label for="email" class="block font-medium text-sm text-gray-700 mb-1">Alamat Email</label>
                 <input
@@ -67,7 +64,6 @@
                 >
             </div>
 
-            {{-- Role (jika ada) --}}
             @if(isset($roles))
             <div class="mb-5">
                 <label for="role" class="block font-medium text-sm text-gray-700 mb-1">Peran (Role)</label>
@@ -85,7 +81,6 @@
             </div>
             @endif
 
-            {{-- Password (opsional, bisa dikosongkan jika tidak ingin mengganti) --}}
             <div class="mb-5">
                 <label for="password" class="block font-medium text-sm text-gray-700 mb-1">Password Baru (Kosongkan jika tidak ingin mengganti)</label>
                 <input
@@ -106,7 +101,6 @@
                 >
             </div>
 
-            {{-- Tombol Aksi --}}
             <div class="flex items-center justify-end gap-3 pt-4 border-t border-stone-100">
                 <a href="{{ route('dashboard.users.index') }}" class="px-5 py-2.5 border border-stone-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition">Batal</a>
                 <button type="submit" class="px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-xl shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2">Simpan Perubahan</button>

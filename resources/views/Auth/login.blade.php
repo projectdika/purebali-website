@@ -22,59 +22,59 @@
         @endif
     </head>
 
-<body class="bg-secondary font-[Poppins] flex items-center justify-center min-h-screen">
+    <body class="bg-secondary font-[Poppins] flex items-center justify-center min-h-screen">
 
-<div class="flex max-w-5xl w-full h-[520px] bg-secondary rounded-xl overflow-hidden shadow-lg">
+        <div class="flex max-w-5xl w-full h-[520px] bg-secondary rounded-xl overflow-hidden shadow-lg">
 
-    <!-- LEFT -->
-    <div class="w-1/2 flex justify-center bg-cover bg-center items-center"
-         style="background-image: url('{{asset('assets/images/home.png')}}');">
+            <!-- LEFT -->
+            <div class="w-1/2 flex justify-center bg-cover bg-center items-center"
+                style="background-image: url('{{asset('assets/images/home.png')}}');">
 
-        <div class="text-primary bg-white/50 h-full py-[45%] w-full text-center">
-            <h1 class="text-2xl font-bold">
-                Selamat Datang Kembali
-            </h1>
-            <p class="text-sm mt-2">
-                Ayo Jelajahi Kebudayaan Bali Lebih Jauh
-            </p>
+                <div class="text-primary bg-white/50 h-full py-[45%] w-full text-center">
+                    <h1 class="text-2xl font-bold">
+                        Selamat Datang Kembali
+                    </h1>
+                    <p class="text-sm mt-2">
+                        Ayo Jelajahi Kebudayaan Bali Lebih Jauh
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="w-1/2 p-10 flex flex-col justify-center">
+
+                <p class="text-sm text-black/60 mb-1">Pure Bali</p>
+
+                <h2 class="text-xl font-semibold mb-2">
+                    Login to Your Account
+                </h2>
+
+                <p class="text-sm text-black/60 mb-6">
+                    Don't have an account?
+                    <a href="/register" class="text-primaryont-medium">Register now</a>
+                </p>
+
+                <form class="space-y-4" method="POST" action="{{route('login.post')}}">
+                    @csrf
+                    <label for="email">Email</label>
+                    <input value="{{ old('email') }}" type="text" name="email" id="email" placeholder="example@email.com"
+                        class="w-full p-3 bg-input rounded-md outline-none">
+                    @error('email')
+                        <p class="text-red-500">{{ $message }}</p>
+                    @enderror
+
+                    <label for="password">Password</label>
+                    <input  type="password" name="password" id="password" placeholder="*******"
+                        class="w-full p-3 bg-input rounded-md outline-none">
+
+                    <button type="submit" class="w-full bg-button text-white py-3 rounded-md">
+                        Login
+                    </button>
+                </form>
+
+            </div>
+
         </div>
-    </div>
 
-    <!-- RIGHT -->
-    <div class="w-1/2 p-10 flex flex-col justify-center">
-
-        <p class="text-sm text-black/60 mb-1">Pure Bali</p>
-
-        <h2 class="text-xl font-semibold mb-2">
-            Login to Your Account
-        </h2>
-
-        <p class="text-sm text-black/60 mb-6">
-            Don't have an account?
-            <a href="/register" class="text-primaryont-medium">Register now</a>
-        </p>
-
-        <form class="space-y-4" method="POST" action="{{route('login.post')}}">
-            @csrf
-            <label for="email">Email</label>
-            <input value="{{ old('email') }}" type="text" name="email" id="email" placeholder="example@email.com"
-                class="w-full p-3 bg-input rounded-md outline-none">
-            @error('email')
-                <p class="text-red-500">{{ $message }}</p>
-            @enderror
-
-            <label for="password">Password</label>
-            <input  type="password" name="password" id="password" placeholder="*******"
-                class="w-full p-3 bg-input rounded-md outline-none">
-
-            <button type="submit" class="w-full bg-button text-white py-3 rounded-md">
-                Login
-            </button>
-        </form>
-
-    </div>
-
-</div>
-
-</body>
+    </body>
 </html>

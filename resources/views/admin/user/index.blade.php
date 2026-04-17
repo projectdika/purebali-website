@@ -54,9 +54,9 @@
                     <tr class="hover:bg-stone-50/70 transition-colors duration-150 group">
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <a href="{{route('dashboard.users.show', $data->id)}}" class="font-medium text-gray-800 group-hover:text-amber-800 transition-colors duration-150">
+                                <p class="font-medium text-gray-800 group-hover:text-amber-800 transition-colors duration-150">
                                     {{ $data['name'] }}
-                                </a>
+                                </p>
                             </div>
                         </td>
 
@@ -116,5 +116,8 @@
                 @endforeach
             </tbody>
         </table>
+         <div class="px-5 mb-3 mt-6">
+        {{ $users->links() }}
+    </div>
     </div>
 </x-app-layout>
