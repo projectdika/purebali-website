@@ -43,14 +43,14 @@ class MaterialController extends Controller
             'title'       => 'required|string|max:255',
             'description' => 'required|string',
             'picture'     => 'required|image|mimes:jpg,png,jpeg|max:1024',
-            'status'      => 'required|in:0,1',  // ubah jadi 0/1
+            'status'      => 'required|in:0,1',
             'category_id' => 'required|exists:categories,id',
 
             'questions'                      => 'required|array|min:1',
             'questions.*.question_text'      => 'required|string',
             'questions.*.correct_answer'     => 'required|integer|min:0|max:3',
             'questions.*.options'            => 'required|array|size:4',
-            'questions.*.options.*'          => 'required|string', // setiap opsi harus string
+            'questions.*.options.*'          => 'required|string',
         ]);
 
         DB::beginTransaction();
@@ -76,7 +76,7 @@ class MaterialController extends Controller
                 $question = Question::create([
                     'quiz_id'        => $quiz->id,
                     'question_text'  => $qData['question_text'],
-                    'correct_answer' => $qData['correct_answer'], // indeks jawaban benar
+                    'correct_answer' => $qData['correct_answer'],
                 ]);
 
                 foreach ($qData['options'] as $optionText) {
@@ -104,7 +104,7 @@ class MaterialController extends Controller
         $material->load([
             'category',
             'user',
-            'quiz.questions.options' // eager load nested relations
+            'quiz.questions.options' 
         ]);
 
         return view('admin.material.show', compact('material'));
