@@ -91,17 +91,54 @@
                 </div>
             </div>
 
-            <div class="flex flex-col gap-1.5 mb-5">
-                <label for="description" class="font-bold text-sm text-gray-800">Isi Artikel</label>
-                <p class="text-xs text-gray-400">Ceritakan Kebudayaan</p>
-                <textarea
-                    id="description"
-                    name="description"
-                    rows="10"
-                    maxlength="5000"
-                    placeholder="Tulis isi materi disini..."
-                    class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm text-gray-800 placeholder-gray-400 resize-y focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-colors duration-150"
-                >{{ old('description', $material->description) }}</textarea>
+                        <div class="flex flex-col gap-1.5 mb-5">
+                <label class="font-bold text-sm text-gray-800">Isi Artikel</label>
+                <p class="text-xs text-gray-400">Ceritakan Kebudayaan — gunakan toolbar untuk bold, italic, heading, dll.</p>
+
+                <div class="quill-wrapper">
+                    <div id="quill-toolbar">
+                        <span class="ql-formats">
+                            <select class="ql-header">
+                                <option value="1">Heading 1</option>
+                                <option value="2">Heading 2</option>
+                                <option value="3">Heading 3</option>
+                                <option selected>Paragraph</option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-bold"      title="Bold"></button>
+                            <button class="ql-italic"    title="Italic"></button>
+                            <button class="ql-underline" title="Underline"></button>
+                            <button class="ql-strike"    title="Strikethrough"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-align">
+                                <option selected title="Rata Kiri"></option>
+                                <option value="center"  title="Rata Tengah"></option>
+                                <option value="right"   title="Rata Kanan"></option>
+                                <option value="justify" title="Justify"></option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-list" value="ordered" title="Ordered List"></button>
+                            <button class="ql-list" value="bullet"  title="Bullet List"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-blockquote" title="Blockquote"></button>
+                            <button class="ql-code-block" title="Code Block"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-link"  title="Insert Link"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-clean" title="Remove Formatting"></button>
+                        </span>
+                    </div>
+
+                    <div id="quill-editor" data-old="{{ old('description') }}"></div>
+                </div>
+
+                <input type="hidden" id="description" name="description">
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -231,4 +268,5 @@
             </div>
         </div>
     </form>
+    @vite(['resources/js/textarea.js'])
 </x-app-layout>

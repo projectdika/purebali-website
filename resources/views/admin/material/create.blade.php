@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <div class="font-poppins pt-4 px-4 sm:px-8 lg:px-16 xl:px-32 2xl:px-40">
         <a class="flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900 transition-colors w-fit" href="{{ route('dashboard.materials.index') }}">
             <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
@@ -59,6 +60,7 @@
         }"
     >
         @csrf
+
         <fieldset class="bg-white rounded-2xl shadow-sm border border-stone-100 p-5 sm:p-6 mb-5">
             <h2 class="text-xl font-bold mb-5 text-gray-800">Informasi Budaya</h2>
 
@@ -74,6 +76,7 @@
                         class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-colors duration-150"
                     >
                 </div>
+
                 <div class="col-span-full">
                     <label for="picture" class="font-bold text-sm text-gray-800">Foto Utama</label>
                     <input
@@ -87,16 +90,53 @@
             </div>
 
             <div class="flex flex-col gap-1.5 mb-5">
-                <label for="description" class="font-bold text-sm text-gray-800">Isi Artikel</label>
-                <p class="text-xs text-gray-400">Ceritakan Kebudayaan</p>
-                <textarea
-                    id="description"
-                    name="description"
-                    rows="10"
-                    maxlength="5000"
-                    placeholder="Tulis isi materi disini..."
-                    class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm text-gray-800 placeholder-gray-400 resize-y focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-colors duration-150"
-                >{{ old('description') }}</textarea>
+                <label class="font-bold text-sm text-gray-800">Isi Artikel</label>
+                <p class="text-xs text-gray-400">Ceritakan Kebudayaan — gunakan toolbar untuk bold, italic, heading, dll.</p>
+
+                <div class="quill-wrapper">
+                    <div id="quill-toolbar">
+                        <span class="ql-formats">
+                            <select class="ql-header">
+                                <option value="1">Heading 1</option>
+                                <option value="2">Heading 2</option>
+                                <option value="3">Heading 3</option>
+                                <option selected>Paragraph</option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-bold"      title="Bold"></button>
+                            <button class="ql-italic"    title="Italic"></button>
+                            <button class="ql-underline" title="Underline"></button>
+                            <button class="ql-strike"    title="Strikethrough"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-align">
+                                <option selected title="Rata Kiri"></option>
+                                <option value="center"  title="Rata Tengah"></option>
+                                <option value="right"   title="Rata Kanan"></option>
+                                <option value="justify" title="Justify"></option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-list" value="ordered" title="Ordered List"></button>
+                            <button class="ql-list" value="bullet"  title="Bullet List"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-blockquote" title="Blockquote"></button>
+                            <button class="ql-code-block" title="Code Block"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-link"  title="Insert Link"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-clean" title="Remove Formatting"></button>
+                        </span>
+                    </div>
+
+                    <div id="quill-editor" data-old="{{ old('description') }}"></div>
+                </div>
+
+                <input type="hidden" id="description" name="description">
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -137,7 +177,10 @@
                 >
                     <div class="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-stone-100 bg-stone-50/60">
                         <div class="flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-full bg-amber-100 text-amber-800 text-xs font-bold flex items-center justify-center flex-shrink-0" x-text="index + 1"></span>
+                            <span
+                                class="w-7 h-7 rounded-full bg-amber-100 text-amber-800 text-xs font-bold flex items-center justify-center flex-shrink-0"
+                                x-text="index + 1"
+                            ></span>
                             <h3 class="font-semibold text-gray-700 text-sm">Pertanyaan Kuis</h3>
                         </div>
                         <button
@@ -155,7 +198,9 @@
 
                     <div class="px-4 sm:px-6 py-5 space-y-5">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Pertanyaan <span class="text-red-500">*</span></label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Pertanyaan <span class="text-red-500">*</span>
+                            </label>
                             <textarea
                                 :name="'questions[' + index + '][question_text]'"
                                 x-model="question.question_text"
@@ -167,7 +212,9 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Pilihan Jawaban <span class="text-red-500">*</span></label>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                Pilihan Jawaban <span class="text-red-500">*</span>
+                            </label>
                             <div class="space-y-2.5">
                                 <template x-for="(opt, optIndex) in question.options" :key="optIndex">
                                     <div class="flex items-center gap-3">
@@ -205,7 +252,7 @@
                     class="inline-flex items-center gap-2 px-6 py-2.5 border border-amber-300 text-amber-800 bg-white hover:bg-amber-50 hover:border-amber-400 text-sm font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
                 >
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
                     Tambah Pertanyaan
                 </button>
@@ -217,13 +264,22 @@
                 <span x-text="questions.length"></span> pertanyaan ditambahkan
             </p>
             <div class="flex items-center gap-3 w-full sm:w-auto">
-                <a href="{{ route('dashboard.materials.index') }}" class="flex-1 sm:flex-none text-center px-4 py-2 border border-stone-200 rounded-xl text-md text-gray-600 hover:text-white hover:bg-red-600 transition">
+                <a
+                    href="{{ route('dashboard.materials.index') }}"
+                    class="flex-1 sm:flex-none text-center px-4 py-2 border border-stone-200 rounded-xl text-md text-gray-600 hover:text-white hover:bg-red-600 transition"
+                >
                     Batal
                 </a>
-                <button type="submit" class="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-xl transition duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2">
+                <button
+                    type="submit"
+                    class="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-xl transition duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
+                >
                     Simpan
                 </button>
             </div>
         </div>
     </form>
+
+    @vite(['resources/js/textarea.js'])
+
 </x-app-layout>
