@@ -17,7 +17,7 @@ class MaterialSeeder extends Seeder
 {
     public function run()
     {
-        // 1. Buat admin user jika belum ada
+
         $admin = User::firstOrCreate(
             ['email' => 'admin@gmail.com'],
             [
@@ -28,32 +28,31 @@ class MaterialSeeder extends Seeder
             ]
         );
 
-        // 2. Siapkan kategori
         $categoryNames = ['Tarian Bali', 'Upacara Adat', 'Musik Tradisional', 'Seni Pertunjukan'];
         foreach ($categoryNames as $name) {
             Category::firstOrCreate(['name' => $name]);
         }
 
-        // 3. Hapus data lama (gunakan delete untuk hindari masalah foreign key)
+        // menghapus data lama
         Option::query()->delete();
         Question::query()->delete();
         Quiz::query()->delete();
         Material::query()->delete();
 
-        // 4. Siapkan gambar dummy
-        $sourceDir = resource_path('dummy/materials');      // folder asal gambar
-        $targetDir = storage_path('app/public/materials');  // folder tujuan (storage)
+        // gambar dummy
+        $sourceDir = resource_path('dummy/materials');
+        $targetDir = storage_path('app/public/materials');
 
-        // Buat folder tujuan jika belum ada
+        // folder tujuan jika belum ada
         if (!File::exists($targetDir)) {
             File::makeDirectory($targetDir, 0755, true);
         }
 
-        // Cek apakah ada file di folder dummy
+        // cek apakah ada file di folder dummy
         $dummyImages = File::exists($sourceDir) ? File::files($sourceDir) : [];
         $useLocalImages = count($dummyImages) > 0;
 
-        // 5. Data 10 material
+        // Data material
         $materialsData = [
             [
                 'title' => 'Tari Kecak',
@@ -117,29 +116,23 @@ class MaterialSeeder extends Seeder
             ],
         ];
 
-        // 6. Loop untuk membuat material, quiz, pertanyaan, dan opsi
+
         foreach ($materialsData as $data) {
-            // Ambil kategori
             $category = Category::where('name', $data['category'])->first();
 
-            // Tentukan path gambar
             if ($useLocalImages) {
-                // Pilih gambar acak dari folder dummy
                 $randomImage = $dummyImages[array_rand($dummyImages)];
                 $extension = $randomImage->getExtension();
                 $newFileName = Str::random(20) . '.' . $extension;
                 $targetPath = $targetDir . '/' . $newFileName;
 
-                // Salin file
                 File::copy($randomImage->getPathname(), $targetPath);
 
                 $picturePath = 'materials/' . $newFileName;
             } else {
-                // Fallback ke URL Picsum (jika folder dummy kosong)
                 $picturePath = 'https://picsum.photos/seed/' . Str::slug($data['title']) . '/800/600';
             }
 
-            // Buat material
             $material = Material::create([
                 'title'       => $data['title'],
                 'description' => $data['description'],
@@ -149,13 +142,11 @@ class MaterialSeeder extends Seeder
                 'category_id' => $category->id,
             ]);
 
-            // Buat quiz
             $quiz = Quiz::create([
                 'material_id' => $material->id,
                 'title'       => $material->title . ' Quiz',
             ]);
 
-            // Buat 3-5 pertanyaan per quiz
             $questionCount = rand(3, 5);
             for ($i = 0; $i < $questionCount; $i++) {
                 $questionText = $this->generateQuestionText($material->title);
@@ -167,7 +158,6 @@ class MaterialSeeder extends Seeder
                     'correct_answer' => $correctAnswer,
                 ]);
 
-                // Buat 4 opsi
                 $options = $this->generateOptions($material->title);
                 foreach ($options as $optText) {
                     Option::create([
@@ -181,9 +171,6 @@ class MaterialSeeder extends Seeder
         $this->command->info('✅ 10 Material dengan gambar lokal dan quiz berhasil dibuat!');
     }
 
-    /**
-     * Menghasilkan teks pertanyaan acak
-     */
     private function generateQuestionText($title)
     {
         $templates = [
@@ -199,9 +186,6 @@ class MaterialSeeder extends Seeder
         return $templates[array_rand($templates)];
     }
 
-    /**
-     * Menghasilkan 4 opsi jawaban acak
-     */
     private function generateOptions($title)
     {
         $pool = [

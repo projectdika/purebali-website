@@ -1,6 +1,6 @@
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-import '../css/components/quill-editor.css';
+import '../css/app.css';
 
 const AlignStyle = Quill.import('attributors/style/align');
 Quill.register(AlignStyle, true);
