@@ -42,7 +42,7 @@ class MaterialController extends Controller
         $validated = $request->validate([
             'title'       => 'required|string|max:255',
             'description' => 'required|string',
-            'picture'     => 'required|image|mimes:jpg,png,jpeg|max:1024',
+            'picture'     => 'required|image|mimes:jpg,png,jpeg', // |max:1024, nanti kalau perlu optimasi gambar
             'status'      => 'required|in:0,1',
             'category_id' => 'required|exists:categories,id',
 
@@ -104,7 +104,7 @@ class MaterialController extends Controller
         $material->load([
             'category',
             'user',
-            'quiz.questions.options' 
+            'quiz.questions.options'
         ]);
 
         return view('admin.material.show', compact('material'));

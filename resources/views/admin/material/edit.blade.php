@@ -138,7 +138,7 @@
                     <div id="quill-editor" data-old="{{ old('description') }}"></div>
                 </div>
 
-                <input type="hidden" id="description" name="description">
+                <input value="{{ old('description', $material->description) }}" type="hidden" id="description" name="description">
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
