@@ -79,8 +79,18 @@
                         width: 38px !important;
                         height: 38px !important;
                     }
+                    .swiper-button-prev {
+                        left: -4px !important;
+                    }
+                    .swiper-button-next {
+                        right: -4px !important;
+                    }
                     .swiper-button-next::after, .swiper-button-prev::after {
                         font-size: 14px !important;
+                    }
+                    .swiper-slide {
+                        display: flex !important;
+                        justify-content: center !important;
                     }
                 }
             </style>

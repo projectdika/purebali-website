@@ -1,10 +1,10 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <title>{{ config('app.name', 'Pure Bali') }}</title>
+        <link rel="icon" type="image/png" href="{{ asset('assets/images/favico.png') }}">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
@@ -22,14 +22,13 @@
         @endif
     </head>
 
-    <body class="bg-secondary font-[Poppins] flex items-center justify-center min-h-screen">
+    <body class="bg-secondary font-[Poppins] flex items-center justify-center min-h-screen px-4 md:px-4 sm:px-0">
 
-        <div class="flex max-w-5xl w-full h-[520px] bg-secondary rounded-xl overflow-hidden shadow-lg">
+        <div class="flex flex-col md:flex-row max-w-5xl w-full h-auto md:h-[520px] bg-secondary rounded-xl overflow-hidden shadow-lg">
 
             <!-- LEFT -->
-            <div class="w-1/2 flex justify-center bg-cover bg-center items-center"
+            <div class="hidden md:flex w-full md:w-1/2 justify-center bg-cover bg-center items-center"
                 style="background-image: url('{{asset('assets/images/home.png')}}');">
-
                 <div class="text-primary bg-white/50 h-full py-[45%] w-full text-center">
                     <h1 class="text-2xl font-bold">
                         Selamat Datang Kembali
@@ -41,7 +40,7 @@
             </div>
 
             <!-- RIGHT -->
-            <div class="w-1/2 p-10 flex flex-col justify-center">
+            <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
 
                 <p class="text-sm text-black/60 mb-1">Pure Bali</p>
 
@@ -51,7 +50,7 @@
 
                 <p class="text-sm text-black/60 mb-6">
                     Don't have an account?
-                    <a href="/register" class="text-primaryont-medium">Register now</a>
+                    <a href="/register" class="text-primary font-medium hover:text-primary/80">Register now</a>
                 </p>
 
                 <form class="space-y-4" method="POST" action="{{route('login.post')}}">
@@ -67,7 +66,7 @@
                     <input  type="password" name="password" id="password" placeholder="*******"
                         class="w-full p-3 bg-input rounded-md outline-none">
 
-                    <button type="submit" class="w-full bg-button text-white py-3 rounded-md">
+                    <button type="submit" class="w-full bg-button hover:bg-button/80 text-white py-3 rounded-md cursor-pointer">
                         Login
                     </button>
                 </form>
