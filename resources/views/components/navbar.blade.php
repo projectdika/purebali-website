@@ -47,6 +47,7 @@
                         </svg>
                     </button>
 
+                    {{-- dropdown profile --}}
                     <div x-show="open"
                          @click.away="open = false"
                          x-transition:enter="transition ease-out duration-200"
@@ -153,6 +154,7 @@
             @endcan
 
             @auth
+                <a href="{{ route('profile.edit') }}" class="font-medium text-button text-xl mb-10">Profile</a>
                 <form method="POST" action="/logout" class="font-medium flex text-red-600 text-xl mb-10">
                     @csrf
                     <svg class="size-8 fill-red-600 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
