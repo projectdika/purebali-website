@@ -23,7 +23,7 @@
                             @foreach($question->options as $optIndex => $option)
                                 <label class="flex items-center gap-3 cursor-pointer group">
                                     <input type="radio" name="answers[{{ $question->id }}]" value="{{ $optIndex }}"
-                                           @checked($loop->first)
+                                           {{-- @checked($loop->first) --}}
                                            class="w-4 h-4 accent-button cursor-pointer">
                                     <span class="text-sm text-primary group-hover:text-button transition-colors duration-150">
                                         {{ chr(65 + $optIndex) }}. {{ $option->option_text }}
