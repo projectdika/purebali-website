@@ -35,9 +35,9 @@
 
         <div class="max-w-7xl mx-auto px-6 py-16 mt-1 relative">
             <div class="flex flex-col lg:flex-row gap-12">
-                <div class="flex-3 bg-secondary rounded-lg border border-button gap-5 mt-0 p-8 md:p-10 font-poppins">
-                    {!! nl2br(e($material->description)) !!}
-                </div>
+                <div class="prose flex-3 bg-secondary rounded-lg border border-button gap-5 mt-0 p-8 md:p-10 font-poppins">
+                {!! $material->description !!}
+            </div>
 
                 @if($quiz)
                 <div class="w-full lg:w-90 lg:sticky lg:top-24">

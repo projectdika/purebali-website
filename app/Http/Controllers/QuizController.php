@@ -11,46 +11,39 @@ use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
-    /**
-     * Menampilkan halaman pertanyaan kuis
-     */
     public function start(Quiz $quiz)
     {
-        // Pastikan quiz memiliki pertanyaan
+
         if ($quiz->questions->count() === 0) {
             return redirect()->back()->with('error', 'Kuis ini belum memiliki pertanyaan.');
         }
 
-        // Load quiz beserta pertanyaan dan opsi
         $quiz->load('questions.options');
 
         return view('quiz.question', compact('quiz'));
     }
 
-    /**
-     * Memproses jawaban kuis
-     */
     public function submit(Request $request, Quiz $quiz)
     {
         $validated = $request->validate([
             'answers' => 'required|array',
-            'answers.*' => 'required|integer|min:0|max:3', // indeks opsi yang dipilih
+            'answers.*' => 'required|integer|min:0|max:3',
         ]);
 
         DB::beginTransaction();
         try {
-            // Hitung skor
+
             $totalQuestions = $quiz->questions->count();
             $correctCount = 0;
 
-            // Buat attempt baru
+
             $attempt = Attempt::create([
                 'quiz_id' => $quiz->id,
                 'user_id' => Auth::id(),
-                'score' => 0, // sementara
+                'score' => 0,
             ]);
 
-            // Simpan jawaban user dan hitung benar
+
             foreach ($quiz->questions as $question) {
                 $selectedOptionIndex = $request->input("answers.{$question->id}");
                 $isCorrect = ($selectedOptionIndex == $question->correct_answer);
@@ -59,7 +52,7 @@ class QuizController extends Controller
                     $correctCount++;
                 }
 
-                // Dapatkan option_id berdasarkan indeks yang dipilih
+
                 $option = $question->options->get($selectedOptionIndex);
 
                 if ($option) {
@@ -71,7 +64,7 @@ class QuizController extends Controller
                 }
             }
 
-            // Update skor attempt
+
             $score = round(($correctCount / $totalQuestions) * 100);
             $attempt->update(['score' => $score]);
 
@@ -85,12 +78,9 @@ class QuizController extends Controller
         }
     }
 
-    /**
-     * Menampilkan hasil kuis
-     */
     public function result(Attempt $attempt)
     {
-        // Pastikan user hanya bisa melihat hasil miliknya
+
         if ($attempt->user_id !== Auth::id()) {
             abort(403);
         }
@@ -101,7 +91,7 @@ class QuizController extends Controller
             'answers.question'
         ]);
 
-        // Siapkan data review jawaban
+
         $quiz = $attempt->quiz;
         $totalQuestions = $quiz->questions->count();
         $correctCount = $attempt->answers->filter(function ($answer) {

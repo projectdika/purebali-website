@@ -14,9 +14,9 @@
         @if($material->picture)
             <img src="{{ Storage::url($material->picture) }}" alt="{{ $material->title }}" class="w-full max-h-96 object-cover rounded-xl mb-6">
         @endif
-
+        
         <div class="prose max-w-none mb-10">
-            {!! nl2br(e($material->description)) !!}
+            {!! $material->description !!}
         </div>
 
         @if($material->quiz && $material->quiz->questions->count())
