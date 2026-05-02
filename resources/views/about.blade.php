@@ -11,7 +11,7 @@
             </div>
         </section>
 
-        <section class="py-20 bg-[#FAF3E0]">
+        <section class="pt-20 bg-[#FAF3E0]">
             <div class="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-12">
                 <div class="w-full md:w-1/2 text-center md:text-right">
                     <p class="text-[#B08968] text-lg md:text-2xl leading-relaxed font-medium">
@@ -31,7 +31,7 @@
             <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
                 <div class="w-full md:w-1/2 flex justify-center md:justify-end">
                     <div class="w-full md:w-1/2 flex justify-center md:justify-start">
-                        <img src="{{ asset('assets/images/BlogPageJS.png') }}" alt="Logo Pure Bali" class="w-64 md:w-[800px] opacity-80">
+                        <img class="rounded-xl" src="{{ asset('assets/images/team.jpg') }}" alt="Team Photo" class="w-64 md:w-[600px] opacity-80 rounded-2xl shadow-lg">
                     </div>
                 </div>
                 <div class="w-full md:w-1/2 text-center md:text-left">

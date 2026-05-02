@@ -6,8 +6,8 @@
 ])
 
 <a class="group block h-full rounded-2xl" href="{{ $link }}">
-    <article class="relative group text-sm text-primary font-poppins overflow-hidden w-80 shadow-lg h-120 rounded-2xl bg-card">
-        <figure class="w-full relative overflow-hidden h-85">
+    <article class="relative group text-sm text-primary font-poppins overflow-hidden w-64 md:w-80 shadow-lg h-96 md:h-120 rounded-2xl bg-card">
+        <figure class="w-full relative overflow-hidden h-64 md:h-85">
             <img class="transition-transform duration-500 ease-in-out group-hover:scale-105 object-cover w-full h-full inset-0" src="{{ $image }}" alt="Culture Image">
             <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </figure>
