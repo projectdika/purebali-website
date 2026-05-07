@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <link rel="icon" type="image/png" href="{{ asset('assets/images/favico.png') }}">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
@@ -21,10 +21,10 @@
             </style>
         @endif
     </head>
-    <body class="bg-secondary font-poppins flex items-center justify-center h-auto py-8">
-        <div class="flex max-w-5xl w-full bg-secondary rounded-xl overflow-hidden shadow-lg min-h-[600px] mt-30">
+    <body class="bg-secondary font-poppins flex items-center justify-center min-h-screen px-4 md:px-4 sm:px-0">
+        <section class="flex flex-col md:flex-row max-w-5xl w-full bg-secondary rounded-xl overflow-hidden shadow-lg min-h-0 md:min-h-[600px] my-[10px]">
             <!-- LEFT -->
-            <div class="w-1/2 flex justify-center bg-cover bg-center items-center"
+            <div class="hidden md:flex w-full md:w-1/2 justify-center bg-cover bg-center items-center"
                 style="background-image: url('{{ asset('assets/images/home.png') }}');">
                 <div class="text-primary bg-white/50 h-full w-full flex flex-col items-center justify-center py-20 text-center">
                     <h1 class="text-2xl font-bold">
@@ -37,7 +37,7 @@
             </div>
 
             <!-- RIGHT -->
-            <div class="w-1/2 p-10 flex flex-col justify-center py-8">
+            <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center py-6 md:py-8">
                 <p class="text-sm text-black/60 mb-1">Pure Bali</p>
                 <h2 class="text-xl font-semibold mb-2">
                     Create Your Account
@@ -92,7 +92,7 @@
                     </button>
                 </form>
             </div>
-        </div>
+        </section>
     </body>
 
 </html>

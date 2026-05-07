@@ -49,7 +49,7 @@
                 @endif
             </div>
             {{-- Pagination --}}
-            <div class="px-5 mb-3 mt-6">
+            <div class="px-10 mb-3 mt-6">
                 {{ $materials->links() }}
             </div>
     </main>

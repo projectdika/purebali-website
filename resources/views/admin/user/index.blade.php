@@ -31,10 +31,10 @@
                     <th class="px-6 py-4 text-left text-sm font-semibold text-black tracking-wider w-[40%]">
                         Nama User
                     </th>
-                    <th class="px-6 py-4 text-center text-sm font-semibold text-black tracking-wider">
+                    <th class="hidden md:table-cell px-6 py-4 text-center text-sm font-semibold text-black tracking-wider">
                         Email
                     </th>
-                    <th class="px-6 py-4 text-center text-sm font-semibold text-black tracking-wider">
+                    <th class="hidden md:table-cell px-6 py-4 text-center text-sm font-semibold text-black tracking-wider">
                         Role
                     </th>
                     <th class="hidden md:table-cell px-6 py-4 text-left text-sm font-semibold text-black tracking-wider">
@@ -60,12 +60,12 @@
                             </div>
                         </td>
 
-                        <td class="px-6 text-center py-4">
+                        <td class="hidden md:table-cell px-6 text-center py-4">
                             <span class="font-medium text-gray-700">
                                 {{ $data['email'] }}
                             </span>
                         </td>
-                        <td class="px-6 text-center py-4">
+                        <td class="hidden md:table-cell px-6 text-center py-4">
                             <span class="font-medium text-gray-700">
                                 {{ $data['role'] }}
                             </span>
